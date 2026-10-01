@@ -47,8 +47,8 @@ if(!p.budgetItems.length||!p.activities.length||!p.supplies.length||!p.suppliers
 const app=read("assets/js/app.js");
 const required=[
  "Planejamento que vira decisão.","login-shell","sidebar","topbar","grid grid-4","Curva ABC","Gantt paramétrico",
- "data-add=\"budget\"","data-add=\"activity\"","data-add=\"supply\"","data-add=\"source\"",
- "data-add=\"supplier\"","data-add=\"quote\"","data-groups","zoneMap","shareModal","exportBudgetCsv",
+ "pageActions('budget','budget')","pageActions('planning','activity')","pageActions('supplies','supply')","pageActions('sources','source')",
+ "pageActions('suppliers','supplier')","data-add=\"quote\"","data-groups","zoneMap","shareModal","exportBudgetCsv",
  "Orçamento","Planejamento","Suprimentos","Fornecedores","Fontes e cotações","Equipes e produtividade",
  "Logística","Riscos","Matriz multicritério","Cenários","Canteiro para o ciclo de lajes","Insights do estudo",
  "Referências","Auditoria e comentários","Usuários"
