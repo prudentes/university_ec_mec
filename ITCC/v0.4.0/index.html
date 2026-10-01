@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>ITCC Planner v0.4.0</title>
+<style>
+:root{--bg:#f4f6f9;--card:#fff;--txt:#16202a;--muted:#667085;--line:#dfe3e8;--accent:#17365d;--soft:#edf1f6;--good:#147a4a;--warn:#9a6700;--bad:#b42318;--info:#1769aa;--shadow:0 7px 22px rgba(16,24,40,.08)}
+[data-theme=dark]{--bg:#0e141b;--card:#171f29;--txt:#edf2f7;--muted:#a2adbb;--line:#303b48;--accent:#7aafe5;--soft:#263240;--good:#68ce9b;--warn:#f0b85b;--bad:#ff8a80;--info:#70baf0;--shadow:0 8px 24px rgba(0,0,0,.3)}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--txt)}
+header{background:#17365d;color:#fff;padding:14px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+header select,header button{background:#fff;color:#18212b;border:0}
+.brand{display:flex;align-items:center;gap:10px}.logo{width:40px;height:40px;border-radius:10px;background:#fff;color:#17365d;display:grid;place-items:center;font-weight:900}
+nav{display:flex;gap:6px;flex-wrap:wrap;padding:12px;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:8}
+button,select,input,textarea{font:inherit}button{border:0;border-radius:7px;padding:9px 12px;cursor:pointer;background:var(--soft);color:var(--txt)}button.primary{background:#17365d;color:#fff}button.goodbtn{background:#147a4a;color:#fff}button.danger{background:#b42318;color:#fff}button.ghost{background:transparent;border:1px solid var(--line);color:inherit}
+nav button{background:var(--soft)}nav button.active{background:#17365d;color:#fff}
+main{padding:18px;max-width:1580px;margin:auto}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}.grid2{display:grid;grid-template-columns:2fr 1fr;gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:14px;box-shadow:var(--shadow)}.kpi b{font-size:23px;display:block;margin-top:6px}.muted{color:var(--muted);font-size:13px}
+table{width:100%;border-collapse:collapse;background:var(--card)}th,td{padding:8px;border:1px solid var(--line);font-size:12.5px;text-align:left;vertical-align:top}th{background:color-mix(in srgb,var(--soft) 80%,transparent);color:var(--muted);font-size:12px}
+input,select,textarea{width:100%;padding:7px;border:1px solid #cbd1d8;border-radius:5px;background:var(--card);color:var(--txt)}textarea{min-height:90px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.tag,.badge{padding:3px 7px;border-radius:99px;background:var(--soft);font-size:11px;display:inline-block}.good{color:var(--good)}.warning{color:var(--warn)}.dangerText{color:var(--bad)}.info{color:var(--info)}
+.rec{padding:10px 12px;border-left:4px solid var(--info);background:color-mix(in srgb,var(--info) 8%,transparent);border-radius:8px;margin:8px 0}.rec.good{border-color:var(--good)}.rec.warning{border-color:var(--warn)}
+.plan{position:relative;min-height:460px;border:2px solid var(--line);border-radius:10px;background-image:linear-gradient(rgba(127,127,127,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(127,127,127,.08) 1px,transparent 1px);background-size:50px 50px;background-position:center;background-repeat:repeat;overflow:hidden}
+.plan.hasimg{background-size:contain;background-repeat:no-repeat;background-position:center}.zone{position:absolute;border:2px solid #2f5597;background:rgba(47,85,151,.15);border-radius:8px;padding:6px;font-size:11px;overflow:hidden;min-width:42px;min-height:30px}.zone.site{border-color:#147a4a;background:rgba(20,122,74,.12)}
+.gantt{min-width:640px}.ganttbar{height:20px;background:var(--soft);border-radius:4px;position:relative;overflow:hidden}.ganttbar span{position:absolute;height:100%;background:#667085;border-radius:4px}
+.abcbar{height:18px;background:var(--soft);border-radius:4px;overflow:hidden}.abcbar span{display:block;height:100%;background:#667085}.tablewrap{overflow:auto}.grouphead td{font-weight:700;background:color-mix(in srgb,var(--soft) 70%,transparent)}
+.modalback{position:fixed;inset:0;background:rgba(0,0,0,.48);display:grid;place-items:center;z-index:30;padding:18px}.modal{width:min(860px,96vw);max-height:92vh;overflow:auto;background:var(--card);border-radius:12px;border:1px solid var(--line);padding:18px;box-shadow:0 20px 60px rgba(0,0,0,.35)}.modal h2{margin-top:0}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.formgrid .full{grid-column:1/-1}
+.login{max-width:420px;margin:10vh auto}.hidden{display:none!important}.split{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.source-pill{white-space:nowrap}.mini{font-size:11px}.nowrap{white-space:nowrap}
+@media(max-width:900px){.grid2{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.formgrid .full{grid-column:auto}header{padding:12px}nav{overflow:auto;flex-wrap:nowrap}nav button{min-width:max-content}main{padding:12px}}
+</style>
+</head>
+<body>
+<section id="login" class="card login">
+  <div class="brand"><div class="logo">IT</div><div><h2 style="margin:0">ITCC Planner</h2><span class="muted">v0.4.0 • planejamento técnico-econômico</span></div></div>
+  <hr style="border:0;border-top:1px solid var(--line)">
+  <label>Usuário</label><input id="lu" autocomplete="username">
+  <label>Senha</label><input id="lp" type="password" autocomplete="current-password">
+  <br><br><button class="primary" onclick="loginNow()">Entrar</button>
+  <p id="loginErr" class="dangerText"></p>
+</section>
+<div id="app" class="hidden">
+<header>
+  <div class="brand"><div class="logo">IT</div><div><b>ITCC Planner</b><span style="display:block;font-size:12px">v0.4.0 • SemVer</span></div></div>
+  <div class="actions" style="margin:0">
+    <select id="projectSel" onchange="changeProject(this.value)"></select>
+    <select id="themeSel" onchange="changeTheme(this.value)"><option value="system">Tema: sistema</option><option value="light">Claro</option><option value="dark">Escuro</option></select>
+    <span id="who" class="mini"></span><button onclick="logout()">Sair</button>
+  </div>
+</header>
+<nav id="nav"></nav>
+<main id="view"></main>
+</div>
+<div id="modalRoot"></div>
+<script>
+const VERSION="0.4.0";
+const KEY="itccPlanner_v040";
+const LEGACY_KEYS=["itccPlanner_v020","itccPlanner_v010","itccPlannerV1"];
+
+const SOURCE_TYPES={
+  SINAPI_NAT:"SINAPI - Média Nacional",
+  SINAPI_DF:"SINAPI - DF",
+  SICRO_NAT:"SICRO - Média Nacional",
+  SICRO_DF:"SICRO - DF",
+  MARKET_NAT:"Mercado - Média Nacional",
+  MARKET_DF:"Mercado - Média Regional Brasília/DF",
+  SUPPLIER:"Fornecedor individual",
+  BASELINE:"Baseline Entrega 1"
+};
+
+const model={
+ id:"sta-terezinha",name:"Igreja Santa Terezinha",owner:"ITCC",location:"Brasília/DF",areaParam:235,costBase:"SINAPI DF Ago/2026",selected:"EPS",
+ systems:[
+  {key:"CER",name:"Pré-moldada - lajota cerâmica",h:20,cost:202.39,hh:.747,concrete:.073,steel:1.185,pros:"Menor custo direto; ampla disponibilidade; solução conhecida.",cons:"Mais pesada e frágil que EPS; consumo de concreto ligeiramente superior."},
+  {key:"EPS",name:"Pré-moldada - EPS",h:20,cost:206.29,hh:.590,concrete:.068,steel:1.185,pros:"Leve, fácil manuseio, produtividade favorável e menor consumo de concreto.",cons:"Exige armazenamento protegido, acabamento compatível e controle de incêndio."},
+  {key:"NER",name:"Nervurada - cubeta",h:20,cost:230.62,hh:.879,concrete:.100,steel:9,pros:"Boa eficiência estrutural e cubetas reutilizáveis.",cons:"Mais fôrmas, ciclo e especialização para o vão de 4,93 m."},
+  {key:"MAC",name:"Maciça",h:13,cost:263.19,hh:.945,concrete:.130,steel:10,pros:"Robusta, contínua e amplamente conhecida.",cons:"Maior peso, consumo de concreto/aço, fôrmas e custo."}
+ ],
+ criteria:[
+  {n:"Adequação estrutural",w:18,s:{CER:4,EPS:4,NER:5,MAC:5}},{n:"Peso próprio",w:10,s:{CER:4,EPS:5,NER:4,MAC:2}},
+  {n:"Custo total",w:18,s:{CER:5,EPS:4,NER:3,MAC:2}},{n:"Prazo",w:12,s:{CER:4,EPS:5,NER:3,MAC:2}},
+  {n:"Fôrmas/escoramento",w:6,s:{CER:4,EPS:4,NER:3,MAC:2}},{n:"Mão de obra",w:5,s:{CER:4,EPS:4,NER:3,MAC:2}},
+  {n:"Construtibilidade/logística",w:6,s:{CER:4,EPS:5,NER:3,MAC:3}},{n:"Instalações",w:5,s:{CER:3,EPS:4,NER:3,MAC:4}},
+  {n:"Térmico/acústico",w:5,s:{CER:4,EPS:4,NER:3,MAC:4}},{n:"Incêndio",w:5,s:{CER:5,EPS:3,NER:5,MAC:5}},
+  {n:"Sustentabilidade",w:5,s:{CER:3,EPS:4,NER:4,MAC:3}},{n:"Fornecedores DF",w:5,s:{CER:5,EPS:4,NER:3,MAC:5}}
+ ],
+ zones:[
+  {id:"Z1",name:"Nave principal",span:4.93,load:5,area:100,sys:"EPS",x:7,y:7,w:48,h:49,note:"Zona crítica do pré-dimensionamento."},
+  {id:"Z2",name:"Presbitério / altar",span:4.93,load:5,area:30,sys:"EPS",x:59,y:7,w:29,h:21,note:"Conferir cargas localizadas."},
+  {id:"Z3",name:"Circulação, coro/mezanino e reunião",span:4.93,load:5,area:45,sys:"EPS",x:59,y:31,w:29,h:25,note:"Uso público; cenário conservador."},
+  {id:"Z4",name:"Sacristia e salas de apoio",span:4.93,load:3,area:35,sys:"EPS",x:7,y:61,w:34,h:22,note:"Padronização da solução."},
+  {id:"Z5",name:"Sanitários, molhadas e técnicas",span:4.93,load:3,area:25,sys:"EPS",x:44,y:61,w:24,h:22,note:"Compatibilizar passagens e impermeabilização."}
+ ],
+ site:{gate:true,unload:true,store:true,epsProtected:true,assembly:true,sanitary:true,changing:true,meal:true,water:true,waste:true,concrete:true,firePlan:true},
+ planImage:null,
+ groups:{
+  budget:[
+   {id:"B-G1",name:"Sistema pré-moldado / enchimento",order:1},{id:"B-G2",name:"Concreto e lançamento",order:2},{id:"B-G3",name:"Armaduras",order:3},
+   {id:"B-G4",name:"Escoramento e madeira",order:4},{id:"B-G5",name:"Mão de obra direta",order:5},{id:"B-G6",name:"Consumíveis",order:6}
+  ],
+  planning:[
+   {id:"P-G1",name:"Preparação da frente",order:1},{id:"P-G2",name:"Escoramento",order:2},{id:"P-G3",name:"Montagem da laje",order:3},
+   {id:"P-G4",name:"Instalações e armaduras",order:4},{id:"P-G5",name:"Concretagem",order:5},{id:"P-G6",name:"Cura e liberação",order:6}
+  ],
+  supplies:[
+   {id:"S-G1",name:"Pré-moldados e EPS",order:1},{id:"S-G2",name:"Concreto",order:2},{id:"S-G3",name:"Aço e acessórios",order:3},
+   {id:"S-G4",name:"Madeira e escoramento",order:4},{id:"S-G5",name:"Consumíveis",order:5}
+  ],
+  sources:[
+   {id:"SRC-G1",name:"Bases oficiais",order:1},{id:"SRC-G2",name:"Pesquisa de mercado",order:2},{id:"SRC-G3",name:"Fornecedores individuais",order:3}
+  ],
+  suppliers:[
+   {id:"SUP-G1",name:"Pré-moldados / EPS",order:1},{id:"SUP-G2",name:"Concreto",order:2},{id:"SUP-G3",name:"Aço / ferragens",order:3},{id:"SUP-G4",name:"Madeira / escoramento",order:4},{id:"SUP-G5",name:"Materiais gerais",order:5}
+  ]
+ },
+ budgetItems:[
+  {id:"B001",groupId:"B-G1",kind:"Material",code:"SINAPI 43355",name:"Laje pré-moldada treliçada com enchimento EPS H16 + vigotas VTR 12x16 (menor nível publicado no SINAPI)",qty:235,unit:"m²",unitPrice:75.36,sourceId:"SRC-SINAPI-DF",supplierId:"SUP-LAJESPLAN",baseline:true},
+  {id:"B002",groupId:"B-G2",kind:"Serviço",code:"SINAPI 103674",name:"Concretagem FCK 25 MPa para laje pré-moldada com bomba: lançamento, adensamento e acabamento",qty:15.98,unit:"m³",unitPrice:753.5294117647,sourceId:"SRC-SINAPI-DF",supplierId:"SUP-CONSTRUVEL",baseline:true},
+  {id:"B003",groupId:"B-G3",kind:"Serviço",code:"SINAPI 92768",name:"Armação de distribuição CA-60 5,0 mm - montagem",qty:278.475,unit:"kg",unitPrice:14.1518987342,sourceId:"SRC-SINAPI-DF",supplierId:"SUP-GERDAU",baseline:true},
+  {id:"B004",groupId:"B-G4",kind:"Material",code:"SINAPI 6193",name:"Tábua não aparelhada 2,5 x 20 cm",qty:376,unit:"m",unitPrice:19.30,sourceId:"SRC-SINAPI-DF",supplierId:"SUP-CONSTRUALVES",baseline:true},
+  {id:"B005",groupId:"B-G4",kind:"Serviço",code:"SINAPI 92273",name:"Fabricação de escoras tipo pontalete em madeira para pé-direito simples",qty:232.65,unit:"m",unitPrice:14.6262626263,sourceId:"SRC-SINAPI-DF",supplierId:"SUP-CONSTRUALVES",baseline:true},
+  {id:"B006",groupId:"B-G5",kind:"Mão de obra",code:"SINAPI 88262",name:"Carpinteiro de fôrmas com encargos complementares",qty:79.195,unit:"h",unitPrice:31.4243323442,sourceId:"SRC-SINAPI-DF",supplierId:"",baseline:true},
+  {id:"B007",groupId:"B-G5",kind:"Mão de obra",code:"SINAPI 88316",name:"Servente com encargos complementares",qty:59.455,unit:"h",unitPrice:24.7826086957,sourceId:"SRC-SINAPI-DF",supplierId:"",baseline:true},
+  {id:"B008",groupId:"B-G6",kind:"Consumível",code:"SINAPI 40304",name:"Prego de aço polido com cabeça dupla 17 x 27",qty:7.99,unit:"kg",unitPrice:20.5882352941,sourceId:"SRC-SINAPI-DF",supplierId:"SUP-DOMINIK",baseline:true}
+ ],
+ activities:[
+  {id:"A001",groupId:"P-G1",name:"Receber materiais da frente",zone:"Z1",pred:"",days:.5,crew:2,lead:0,status:"Planejada"},
+  {id:"A002",groupId:"P-G1",name:"Locar e conferir níveis/apoios",zone:"Z1",pred:"A001",days:.5,crew:2,lead:0,status:"Planejada"},
+  {id:"A003",groupId:"P-G2",name:"Posicionar pontaletes e linhas de escora",zone:"Z1",pred:"A002",days:.75,crew:3,lead:0,status:"Planejada"},
+  {id:"A004",groupId:"P-G2",name:"Instalar travessas, nivelar e contraventar escoramento",zone:"Z1",pred:"A003",days:.75,crew:3,lead:0,status:"Planejada"},
+  {id:"A005",groupId:"P-G3",name:"Distribuir e apoiar vigotas treliçadas",zone:"Z1",pred:"A004",days:.75,crew:4,lead:0,status:"Planejada"},
+  {id:"A006",groupId:"P-G3",name:"Distribuir blocos EPS H16 e passarelas",zone:"Z1",pred:"A005",days:.5,crew:4,lead:0,status:"Planejada"},
+  {id:"A007",groupId:"P-G3",name:"Conferir alinhamento, esquadro, apoios e contraflecha prevista",zone:"Z1",pred:"A006",days:.25,crew:2,lead:0,status:"Planejada"},
+  {id:"A008",groupId:"P-G4",name:"Executar reservas e passagens de instalações",zone:"Z1",pred:"A007",days:.5,crew:2,lead:0,status:"Planejada"},
+  {id:"A009",groupId:"P-G4",name:"Montar armadura de distribuição CA-60 5 mm",zone:"Z1",pred:"A008",days:.5,crew:3,lead:0,status:"Planejada"},
+  {id:"A010",groupId:"P-G4",name:"Montar armaduras negativas/complementares quando previstas",zone:"Z1",pred:"A009",days:.5,crew:3,lead:0,status:"Planejada"},
+  {id:"A011",groupId:"P-G4",name:"Realizar inspeção pré-concretagem e liberar frente",zone:"Z1",pred:"A010",days:.25,crew:2,lead:0,status:"Planejada"},
+  {id:"A012",groupId:"P-G5",name:"Posicionar bomba/mangotes e organizar sequência de lançamento",zone:"Z1",pred:"A011",days:.25,crew:3,lead:1,status:"Planejada"},
+  {id:"A013",groupId:"P-G5",name:"Lançar concreto FCK 25 MPa",zone:"Z1",pred:"A012",days:.5,crew:6,lead:0,status:"Planejada"},
+  {id:"A014",groupId:"P-G5",name:"Adensar concreto",zone:"Z1",pred:"A013",days:.25,crew:3,lead:0,status:"Planejada"},
+  {id:"A015",groupId:"P-G5",name:"Executar acabamento da capa",zone:"Z1",pred:"A014",days:.25,crew:3,lead:0,status:"Planejada"},
+  {id:"A016",groupId:"P-G6",name:"Executar cura do concreto",zone:"Z1",pred:"A015",days:7,crew:1,lead:0,status:"Planejada"},
+  {id:"A017",groupId:"P-G6",name:"Liberar retirada/reescoramento mediante resistência e projeto",zone:"Z1",pred:"A016",days:.25,crew:2,lead:0,status:"Planejada"}
+ ],
+ supplies:[
+  {id:"S001",groupId:"S-G1",budgetItemId:"B001",name:"Sistema treliçado com EPS H16",qty:235,unit:"m²",safety:5,lead:5,supplierId:"SUP-LAJESPLAN",status:"A cotar"},
+  {id:"S002",groupId:"S-G2",budgetItemId:"B002",name:"Concreto usinado FCK 25 MPa",qty:15.98,unit:"m³",safety:0,lead:3,supplierId:"SUP-CONSTRUVEL",status:"Programar"},
+  {id:"S003",groupId:"S-G3",budgetItemId:"B003",name:"Aço CA-60 5,0 mm / armação de distribuição",qty:278.475,unit:"kg",safety:5,lead:3,supplierId:"SUP-GERDAU",status:"A cotar"},
+  {id:"S004",groupId:"S-G4",budgetItemId:"B004",name:"Tábua 2,5 x 20 cm",qty:376,unit:"m",safety:10,lead:2,supplierId:"SUP-CONSTRUALVES",status:"A cotar"},
+  {id:"S005",groupId:"S-G4",budgetItemId:"B005",name:"Escoras/pontaletes de madeira",qty:232.65,unit:"m",safety:10,lead:2,supplierId:"SUP-CONSTRUALVES",status:"A cotar"},
+  {id:"S006",groupId:"S-G5",budgetItemId:"B008",name:"Prego cabeça dupla 17 x 27",qty:7.99,unit:"kg",safety:5,lead:2,supplierId:"SUP-DOMINIK",status:"A cotar"}
+ ],
+ sources:[
+  {id:"SRC-SINAPI-NAT",groupId:"SRC-G1",type:"SINAPI_NAT",name:"SINAPI - Média Nacional",region:"Brasil",date:"2026-08",url:"https://www.caixa.gov.br/poder-publico/modernizacao-gestao/sinapi/",note:"Média entre UFs para comparação; confirmar relatório oficial."},
+  {id:"SRC-SINAPI-DF",groupId:"SRC-G1",type:"SINAPI_DF",name:"SINAPI - Distrito Federal",region:"DF",date:"2026-08",url:"https://www.caixa.gov.br/poder-publico/modernizacao-gestao/sinapi/",note:"Base econômica do relatório Entrega 1; preços iniciais calibrados para reproduzir exatamente R$ 206,29/m²."},
+  {id:"SRC-SICRO-NAT",groupId:"SRC-G1",type:"SICRO_NAT",name:"SICRO - Média Nacional",region:"Brasil",date:"2026-07",url:"https://www.gov.br/dnit/pt-br/assuntos/planejamento-e-pesquisa/custos-referenciais/sistemas-de-custos/sicro",note:"Não existe tabela única nacional oficial: usar média calculada a partir das UFs selecionadas. Para laje predial, normalmente não aplicável."},
+  {id:"SRC-SICRO-DF",groupId:"SRC-G1",type:"SICRO_DF",name:"SICRO - Distrito Federal",region:"DF",date:"2026-07",url:"https://www.gov.br/dnit/pt-br/assuntos/planejamento-e-pesquisa/custos-referenciais/sistemas-de-custos/sicro/relatorios/relatorios-sicro/centro-oeste/distrito-federal/2026/julho/julho-2026",note:"Referência DNIT para infraestrutura de transportes; só usar quando a composição for tecnicamente aplicável."},
+  {id:"SRC-MKT-NAT",groupId:"SRC-G2",type:"MARKET_NAT",name:"Pesquisa média de mercado nacional",region:"Brasil",date:"2026-10-01",url:"",note:"Média automática das cotações nacionais cadastradas por item."},
+  {id:"SRC-MKT-DF",groupId:"SRC-G2",type:"MARKET_DF",name:"Pesquisa média regional Brasília/DF",region:"Brasília/DF",date:"2026-10-01",url:"",note:"Média automática das cotações regionais cadastradas por item."},
+  {id:"SRC-BASE",groupId:"SRC-G3",type:"BASELINE",name:"Baseline da Entrega 1",region:"Brasília/DF",date:"2026-09-30",url:"",note:"Referência congelada para conferir que o projeto inicial reproduz a Entrega 1."}
+ ],
+ suppliers:[
+  {id:"SUP-LAJESPLAN",groupId:"SUP-G1",name:"LajesPlan DF",cnpj:"",city:"Brasília/DF",address:"QI 25 Lote 42-47, Setor Industrial - Taguatinga",phone:"(61) 3568-1040 / (61) 99986-9827",url:"https://www.lajesplandf.com.br/",categories:"Lajes treliçadas, vigotas, EPS",status:"CNPJ não localizado com segurança na pesquisa"},
+  {id:"SUP-DFLAJES",groupId:"SUP-G1",name:"DF Lajes - H Franco Premoldados Ltda",cnpj:"23.791.721/0001-62",city:"Brasília/DF",address:"SMAS Conjunto B1, Lote 18, Zona Industrial - Guará",phone:"",url:"",categories:"Pré-moldados / lajes",status:"Ativa"},
+  {id:"SUP-PREMOLDADOSCIA",groupId:"SUP-G1",name:"Premoldados & Cia - LA Premoldados Ltda",cnpj:"56.876.203/0001-09",city:"Brasília/DF",address:"SDMC Q1 LT 9, Setor de Materiais de Construção - Ceilândia",phone:"(61) 3585-8833",url:"",categories:"Estruturas pré-moldadas de concreto",status:"Ativa"},
+  {id:"SUP-CONSTRUVEL",groupId:"SUP-G5",name:"Construvel Ltda",cnpj:"68.901.753/0001-01",city:"Brasília/DF",address:"SDE Norte Q2 CJ C LT 4, Taguatinga",phone:"(61) 99517-6822",url:"https://www.construvel.com/",categories:"Materiais gerais, concreto, madeira, ferragens",status:"Ativa"},
+  {id:"SUP-CONSTRUCEL",groupId:"SUP-G5",name:"Construcel Materiais de Construção Ltda",cnpj:"11.893.055/0001-94",city:"Brasília/DF",address:"QNN 9 Conjunto G, Ceilândia Norte",phone:"",url:"",categories:"Materiais de construção",status:"Ativa"},
+  {id:"SUP-CONSTRUALVES",groupId:"SUP-G4",name:"Construalves Materiais para Construção Ltda",cnpj:"57.971.214/0001-22",city:"Brasília/DF",address:"São Sebastião",phone:"(61) 98530-8532",url:"",categories:"Ferragens, madeira e artefatos",status:"Ativa"},
+  {id:"SUP-GERDAU",groupId:"SUP-G3",name:"Gerdau Aços Longos S.A.",cnpj:"07.358.761/0001-69",city:"Brasil",address:"Matriz - Rio de Janeiro/RJ",phone:"(11) 3094-6600",url:"https://www.gerdau.com/",categories:"Aço longo, pregos, arames",status:"Fabricante / matriz ativa"},
+  {id:"SUP-DOMINIK",groupId:"SUP-G3",name:"Dominik MetalCenter",cnpj:"72.332.794/0001-00",city:"São José/SC",address:"Rua Camilo Veríssimo da Silva, 255, Roçado",phone:"(48) 3381-3300",url:"https://dominik.com.br/",categories:"Aços, ferragens, pregos e ferramentas",status:"Ativa"},
+  {id:"SUP-GASPARIN",groupId:"SUP-G5",name:"Gasparin & Filhos Ltda",cnpj:"78.952.082/0001-61",city:"Colombo/PR",address:"Rua José Cavassin, 426",phone:"(41) 3675-3700",url:"https://lojasgasparin.com.br/",categories:"Materiais de construção",status:"Ativa"}
+ ],
+ quotes:[
+  {id:"Q001",budgetItemId:"B001",sourceId:"SRC-SINAPI-DF",supplierId:"",price:75.36,unit:"m²",date:"2026-07",region:"DF",url:"https://buscadorsinapi.com.br/insumo/43355-laje-pre-moldada-trelicada-lajotas-vigotas-com-lajota-em-pol",note:"Valor que reproduz a Entrega 1."},
+  {id:"Q002",budgetItemId:"B001",sourceId:"SRC-SINAPI-NAT",supplierId:"",price:106.50,unit:"m²",date:"2026-07",region:"Brasil",url:"https://buscadorsinapi.com.br/insumo/43355-laje-pre-moldada-trelicada-lajotas-vigotas-com-lajota-em-pol",note:"Média nacional publicada pelo comparador."},
+  {id:"Q003",budgetItemId:"B002",sourceId:"SRC-SINAPI-DF",supplierId:"",price:753.5294117647,unit:"m³",date:"2026-08",region:"DF",url:"",note:"Preço calibrado pela Entrega 1: R$ 51,24/m² ÷ 0,068 m³/m²."},
+  {id:"Q004",budgetItemId:"B002",sourceId:"SRC-SINAPI-NAT",supplierId:"",price:896.98,unit:"m³",date:"2026-08",region:"Brasil",url:"https://buscadorsinapi.com.br/composicao/103674-concretagem-de-vigas-e-lajes-fck-25-mpa-para-lajes-premoldad",note:"Média nacional."},
+  {id:"Q005",budgetItemId:"B003",sourceId:"SRC-SINAPI-DF",supplierId:"",price:14.1518987342,unit:"kg",date:"2026-08",region:"DF",url:"",note:"Preço calibrado pela Entrega 1: R$ 16,77/m² ÷ 1,185 kg/m²."},
+  {id:"Q006",budgetItemId:"B003",sourceId:"SRC-SINAPI-NAT",supplierId:"",price:14.06,unit:"kg",date:"2026-08",region:"Brasil",url:"https://buscadorsinapi.com.br/composicao/92768-armacao-de-laje-de-estrutura-convencional-de-concreto-armado",note:"Média nacional de referência."},
+  {id:"Q007",budgetItemId:"B004",sourceId:"SRC-SINAPI-DF",supplierId:"",price:19.30,unit:"m",date:"2026-08",region:"DF",url:"https://buscadorsinapi.com.br/insumo/6193-tabua-nao-aparelhada-2-5-x-20-cm-em-macaranduba-massaranduba",note:"SINAPI DF."},
+  {id:"Q008",budgetItemId:"B004",sourceId:"SRC-SINAPI-NAT",supplierId:"",price:20.48,unit:"m",date:"2026-08",region:"Brasil",url:"https://buscadorsinapi.com.br/insumo/6193-tabua-nao-aparelhada-2-5-x-20-cm-em-macaranduba-massaranduba",note:"Média nacional."},
+  {id:"Q009",budgetItemId:"B005",sourceId:"SRC-SINAPI-DF",supplierId:"",price:14.6262626263,unit:"m",date:"2026-08",region:"DF",url:"",note:"Preço calibrado pela Entrega 1."},
+  {id:"Q010",budgetItemId:"B005",sourceId:"SRC-SINAPI-NAT",supplierId:"",price:17.32,unit:"m",date:"2026-08",region:"Brasil",url:"https://buscadorsinapi.com.br/composicao/92273-fabricacao-de-escoras-do-tipo-pontalete-em-madeira-para-pe-d",note:"Média nacional."},
+  {id:"Q011",budgetItemId:"B006",sourceId:"SRC-SINAPI-DF",supplierId:"",price:31.4243323442,unit:"h",date:"2026-08",region:"DF",url:"",note:"Preço calibrado pela Entrega 1."},
+  {id:"Q012",budgetItemId:"B006",sourceId:"SRC-SINAPI-NAT",supplierId:"",price:30.76,unit:"h",date:"2026-08",region:"Brasil",url:"https://buscadorsinapi.com.br/composicao/88262-carpinteiro-de-formas-com-encargos-complementares",note:"Média nacional."},
+  {id:"Q013",budgetItemId:"B007",sourceId:"SRC-SINAPI-DF",supplierId:"",price:24.7826086957,unit:"h",date:"2026-08",region:"DF",url:"",note:"Preço calibrado pela Entrega 1."},
+  {id:"Q014",budgetItemId:"B007",sourceId:"SRC-SINAPI-NAT",supplierId:"",price:24.62,unit:"h",date:"2026-08",region:"Brasil",url:"https://buscadorsinapi.com.br/composicao/88316-servente-com-encargos-complementares",note:"Média nacional."},
+  {id:"Q015",budgetItemId:"B008",sourceId:"SRC-SINAPI-DF",supplierId:"",price:20.5882352941,unit:"kg",date:"2026-08",region:"DF",url:"",note:"Preço calibrado pela Entrega 1."},
+  {id:"Q016",budgetItemId:"B008",sourceId:"SRC-MKT-NAT",supplierId:"SUP-DOMINIK",price:19.25,unit:"kg",date:"2026-09",region:"São José/SC",url:"https://dominik.com.br/products/prego-polido-17-x-27-dupla-cabeca-1kg-gerdau-belgo",note:"Prego cabeça dupla 17x27; cotação online individual."},
+  {id:"Q017",budgetItemId:"B008",sourceId:"SRC-MKT-DF",supplierId:"SUP-CONSTRUVEL",price:null,unit:"kg",date:"2026-09",region:"Brasília/DF",url:"https://www.construvel.com/produto/prego-17x27-1kg",note:"Produto regional 17x27 cadastrado; confirmar cabeça dupla antes de comparar."},
+  {id:"Q018",budgetItemId:"B001",sourceId:"SRC-MKT-DF",supplierId:"SUP-LAJESPLAN",price:null,unit:"m²",date:"2026-10",region:"Brasília/DF",url:"https://www.lajesplandf.com.br/",note:"Fornecedor regional identificado; cotar especificação H16/VTR compatível."},
+  {id:"Q019",budgetItemId:"B001",sourceId:"SRC-MKT-DF",supplierId:"SUP-DFLAJES",price:null,unit:"m²",date:"2026-10",region:"Brasília/DF",url:"",note:"Fornecedor regional identificado; preço sob cotação."},
+  {id:"Q020",budgetItemId:"B002",sourceId:"SRC-MKT-DF",supplierId:"SUP-CONSTRUVEL",price:null,unit:"m³",date:"2026-10",region:"Brasília/DF",url:"https://www.construvel.com/produtos",note:"Concreto 25 MPa sob orçamento; mínimo informado no catálogo: 3 m³."}
+ ],
+ risks:[
+  {id:"R1",name:"Carga real superior à referência da vigota",p:4,i:5,action:"Dimensionar vigotas e armaduras para as ações efetivas."},
+  {id:"R2",name:"Interferência de instalações",p:3,i:4,action:"Congelar reservas e passagens antes da concretagem."},
+  {id:"R3",name:"Dano/deslocamento do EPS",p:2,i:3,action:"Estoque protegido, passarelas e inspeção."},
+  {id:"R4",name:"Retirada prematura do escoramento",p:2,i:5,action:"Plano de escoramento/reescoramento e liberação técnica."}
+ ],
+ scenarios:{base:1,optimistic:.95,pessimistic:1.15,current:"base"},
+ comments:[],audit:["Projeto-base v0.4.0 criado para reproduzir integralmente os cálculos e a conclusão da Entrega 1."],
+ references:[
+  {name:"Entrega 1 - Estudo de Viabilidade de Lajes",type:"Baseline acadêmica",date:"2026-09-30",url:""},
+  {name:"SINAPI - Caixa/IBGE",type:"Custos referenciais",date:"2026-08",url:"https://www.caixa.gov.br/poder-publico/modernizacao-gestao/sinapi/"},
+  {name:"SICRO - DNIT / DF julho 2026",type:"Custos de infraestrutura",date:"2026-07",url:"https://www.gov.br/dnit/pt-br/assuntos/planejamento-e-pesquisa/custos-referenciais/sistemas-de-custos/sicro/relatorios/relatorios-sicro/centro-oeste/distrito-federal/2026/julho/julho-2026"}
+ ]
+};
+
+const seed={users:[{user:"ITCC",pass:"ITCC",role:"master"}],projects:[model],current:"sta-terezinha",theme:"system"};
+
+function deep(x){return JSON.parse(JSON.stringify(x))}
+function migrate(){
+ let found=null;
+ try{found=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){}
+ if(found)return found;
+ for(const k of LEGACY_KEYS){try{const old=JSON.parse(localStorage.getItem(k)||"null");if(old){found=old;break}}catch(e){}}
+ if(!found)return deep(seed);
+ const out=deep(seed);
+ if(found.users)out.users=found.users;
+ if(found.theme)out.theme=found.theme;
+ if(found.projects&&found.projects.length){
+   const old=found.projects.find(x=>x.id==="sta-terezinha")||found.projects[0];
+   const base=deep(model);
+   ["name","owner","location","zones","site","planImage","comments","audit"].forEach(k=>{if(old&&old[k]!=null)base[k]=old[k]});
+   out.projects=[base,...found.projects.filter(x=>x.id!=="sta-terezinha")];
+   out.current=found.current&&out.projects.some(x=>x.id===found.current)?found.current:"sta-terezinha";
+ }
+ return out;
+}
+let db=migrate(),session=null,tab="Dashboard";
+const tabs=["Dashboard","Orçamento","Planejamento","Suprimentos","Fontes","Fornecedores","Zonas","Curva ABC","Cronograma","Logística","Riscos","Cenários","Matriz","Insights","Referências","Auditoria","Usuários"];
+
+function project(){return db.projects.find(x=>x.id===db.current)||db.projects[0]}
+function canEdit(){return session&&["master","editor"].includes(session.role)}
+function money(n){return Number(n||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}
+function num(n,d=2){return Number(n||0).toLocaleString("pt-BR",{minimumFractionDigits:d,maximumFractionDigits:d})}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]))}
+function id(prefix){return prefix+Date.now().toString(36)+Math.random().toString(36).slice(2,5)}
+function persist(msg){if(msg&&session){project().audit.unshift(new Date().toLocaleString("pt-BR")+" — "+session.user+": "+msg);project().audit=project().audit.slice(0,200)}localStorage.setItem(KEY,JSON.stringify(db));render()}
+function loginNow(){const u=db.users.find(x=>x.user===lu.value&&x.pass===lp.value);if(!u){loginErr.textContent="Credenciais inválidas.";return}session=u;login.classList.add("hidden");app.classList.remove("hidden");render()}
+function logout(){session=null;app.classList.add("hidden");login.classList.remove("hidden")}
+function changeProject(v){db.current=v;localStorage.setItem(KEY,JSON.stringify(db));render()}
+function changeTheme(v){db.theme=v;applyTheme();localStorage.setItem(KEY,JSON.stringify(db))}
+function applyTheme(){let t=db.theme||"system";if(t==="system")t=matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";document.documentElement.dataset.theme=t;if(document.getElementById("themeSel"))themeSel.value=db.theme||"system"}
+matchMedia("(prefers-color-scheme:dark)").addEventListener?.("change",()=>{if((db.theme||"system")==="system")applyTheme()});
+
+function budgetTotal(){return project().budgetItems.reduce((s,x)=>s+Number(x.qty||0)*Number(x.unitPrice||0),0)}
+function baselineExpected(){return 206.29*project().areaParam}
+function score(k){return project().criteria.reduce((a,c)=>a+Number(c.w)*(Number(c.s[k]||0))/5,0)}
+function winner(){return [...project().systems].sort((a,b)=>score(b.key)-score(a.key))[0]}
+function sourceName(id){return project().sources.find(x=>x.id===id)?.name||"—"}function supplierName(id){return project().suppliers.find(x=>x.id===id)?.name||"—"}
+function groupName(front,id){return project().groups[front]?.find(x=>x.id===id)?.name||"Sem grupo"}
+function quotesFor(itemId,type){return project().quotes.filter(q=>q.budgetItemId===itemId&&(!type||project().sources.find(s=>s.id===q.sourceId)?.type===type)&&q.price!=null)}
+function avgQuote(itemId,type){const q=quotesFor(itemId,type);return q.length?q.reduce((s,x)=>s+Number(x.price),0)/q.length:null}
+function quoteN(itemId,type){return quotesFor(itemId,type).length}
+function systemCost(key){return project().systems.find(x=>x.key===key)?.cost||0}
+
+function recs(){
+ const q=project(),r=[],sum=q.criteria.reduce((a,c)=>a+Number(c.w),0),w=winner();
+ Math.abs(budgetTotal()-baselineExpected())<.05?r.push(["good","Orçamento-base reproduz a Entrega 1: "+money(budgetTotal())+" para "+q.areaParam+" m² ("+money(budgetTotal()/q.areaParam)+"/m²)."]):r.push(["warning","Orçamento atual diverge da baseline da Entrega 1 em "+money(budgetTotal()-baselineExpected())+"."]);
+ sum===100?r.push(["good","Pesos da matriz totalizam 100%."]):r.push(["warning","Pesos da matriz totalizam "+sum+"%; ajuste para 100%."]);
+ w.key===q.selected?r.push(["good","Sistema selecionado coincide com a maior nota: "+w.name+" ("+score(w.key).toFixed(1)+"/100)."]):r.push(["warning","Sistema selecionado não é o primeiro da matriz. Atual: "+w.name+"."]);
+ const ungrouped=q.budgetItems.filter(x=>!x.groupId).length+q.activities.filter(x=>!x.groupId).length+q.supplies.filter(x=>!x.groupId).length;
+ if(ungrouped)r.push(["warning",ungrouped+" registro(s) sem agrupamento visual."]);
+ const noSource=q.budgetItems.filter(x=>!x.sourceId).length;if(noSource)r.push(["warning",noSource+" item(ns) orçamentário(s) sem fonte principal."]);
+ q.supplies.forEach(s=>{if(s.status!=="Recebido"&&s.lead>5)r.push(["info","Suprimento "+s.name+" possui lead time de "+s.lead+" dias; conferir folga no cronograma."])});
+ if(q.selected==="EPS"&&!q.site.epsProtected)r.push(["warning","EPS selecionado sem armazenamento protegido cadastrado."]);
+ if(q.selected==="EPS"&&!q.site.firePlan)r.push(["warning","EPS selecionado sem controle de proteção/incêndio cadastrado."]);
+ return r;
+}
+function selfTest(){
+ const q=project(),errors=[];
+ if(VERSION!=="0.4.0")errors.push("Versão incorreta");
+ if(Math.abs(systemCost("EPS")-206.29)>.001)errors.push("Custo EPS divergente");
+ if(Math.abs(systemCost("CER")-202.39)>.001)errors.push("Custo cerâmica divergente");
+ if(Math.abs(systemCost("NER")-230.62)>.001)errors.push("Custo nervurada divergente");
+ if(Math.abs(systemCost("MAC")-263.19)>.001)errors.push("Custo maciça divergente");
+ if(Math.abs(score("EPS")-84.6)>.01||Math.abs(score("CER")-83.6)>.01||Math.abs(score("NER")-72.2)>.01||Math.abs(score("MAC")-63)>.01)errors.push("Matriz divergente");
+ if(Math.abs(budgetTotal()-48478.15)>.05)errors.push("Orçamento base não fecha R$ 48.478,15");
+ ["SINAPI_NAT","SINAPI_DF","SICRO_NAT","SICRO_DF","MARKET_NAT","MARKET_DF","SUPPLIER","BASELINE"].forEach(t=>{if(!q.sources.some(s=>s.type===t)&&t!=="SUPPLIER")errors.push("Fonte ausente: "+t)});
+ return errors;
+}
+
+function render(){
+ if(!session)return;applyTheme();
+ projectSel.innerHTML=db.projects.map(x=>'<option value="'+esc(x.id)+'" '+(x.id===db.current?"selected":"")+'>'+esc(x.name)+'</option>').join("");
+ who.textContent=session.user+" • "+session.role;
+ nav.innerHTML=tabs.filter(x=>x!=="Usuários"||session.role==="master").map(x=>'<button class="'+(tab===x?"active":"")+'" onclick="tab=\''+x+'\';render()">'+x+'</button>').join("");
+ const f={"Dashboard":dashboard,"Orçamento":budgetView,"Planejamento":planningView,"Suprimentos":suppliesView,"Fontes":sourcesView,"Fornecedores":suppliersView,"Zonas":zonesView,"Curva ABC":abcView,"Cronograma":ganttView,"Logística":logisticsView,"Riscos":risksView,"Cenários":scenariosView,"Matriz":matrixView,"Insights":insightsView,"Referências":referencesView,"Auditoria":auditView,"Usuários":usersView};
+ view.innerHTML=f[tab]();
+}
+function kpi(a,b,c=""){return '<div class="card kpi"><span class="muted">'+a+'</span><b>'+b+'</b>'+(c?'<span class="mini '+c+'">'+c+'</span>':'')+'</div>'}
+function dashboard(){
+ const q=project(),s=q.systems.find(x=>x.key===q.selected),tests=selfTest();
+ return '<div class="grid">'+kpi("Projeto",esc(q.name))+kpi("Vão crítico","4,93 m")+kpi("Sistema-base",esc(s.name))+kpi("Nota",score(s.key).toFixed(1)+"/100")+kpi("Custo Entrega 1",money(s.cost)+"/m²")+kpi("Orçamento paramétrico",money(budgetTotal()))+kpi("Área paramétrica",num(q.areaParam,0)+" m²")+kpi("Versão","v"+VERSION)+'</div>'+
+ '<div class="grid2"><div class="card"><div class="split"><div><h3 style="margin:0">Mapa gerencial</h3><p class="muted">Zonas do estudo de lajes; esquema gerencial, não planta executiva.</p></div><button onclick="tab=\'Zonas\';render()">Gerenciar zonas</button></div>'+mapHtml()+'</div>'+
+ '<div><div class="card"><h3>Validação inicial</h3>'+(tests.length?tests.map(e=>'<div class="rec warning">'+esc(e)+'</div>').join(""):'<div class="rec good">✓ Configuração inicial validada. Nenhuma divergência com a Entrega 1.</div>')+'</div><div class="card"><h3>Indicações automáticas</h3>'+recs().slice(0,6).map(x=>'<div class="rec '+x[0]+'">'+esc(x[1])+'</div>').join("")+'</div></div></div>'+
+ '<div class="card"><div class="split"><h3 style="margin:0">Cronograma resumido</h3><button onclick="tab=\'Cronograma\';render()">Abrir cronograma</button></div>'+miniGantt()+'</div>';
+}
+function mapHtml(){const q=project();let bg=q.planImage?' style="background-image:url('+q.planImage+');" class="plan hasimg"':' class="plan"';return '<div'+bg+'>'+q.zones.map(z=>'<div class="zone" style="left:'+z.x+'%;top:'+z.y+'%;width:'+z.w+'%;height:'+z.h+'%"><b>'+esc(z.id)+'</b><br>'+esc(z.name)+'<br><span class="mini">'+num(z.area,0)+' m² • '+esc(z.sys)+'</span></div>').join("")+'<div class="zone site" style="left:72%;top:66%;width:17%;height:8%"><b>Acesso</b></div><div class="zone site" style="left:72%;top:77%;width:17%;height:8%"><b>Descarga</b></div></div>'}
+
+function toolbar(front,addLabel,addFn){return '<div class="actions">'+(canEdit()?'<button class="primary" onclick="'+addFn+'">'+addLabel+'</button><button onclick="manageGroups(\''+front+'\')">Agrupamentos</button>':'')+'<button onclick="exportCSV(\''+front+'\')">Exportar CSV</button></div>'}
+
+function budgetView(){
+ const q=project(),groups=[...q.groups.budget].sort((a,b)=>a.order-b.order);
+ return '<div class="card"><div class="split"><div><h2 style="margin:0">Orçamento detalhado</h2><p class="muted">Itens no menor nível cadastrado. Agrupamentos são apenas visuais e não substituem linhas individuais.</p></div><div><b>'+money(budgetTotal())+'</b><br><span class="muted">'+money(budgetTotal()/q.areaParam)+'/m²</span></div></div>'+toolbar("budget","+ Item orçamentário","budgetForm()")+
+ '<div class="tablewrap"><table><tr><th>ID</th><th>Grupo</th><th>Classe</th><th>Código</th><th>Descrição</th><th>Qtd.</th><th>Un.</th><th>PU</th><th>Fonte</th><th>Fornecedor</th><th>Total</th><th></th></tr>'+
+ groups.map(g=>'<tr class="grouphead"><td colspan="12">'+esc(g.name)+'</td></tr>'+q.budgetItems.filter(x=>x.groupId===g.id).map(budgetRow).join("")).join("")+
+ q.budgetItems.filter(x=>!groups.some(g=>g.id===x.groupId)).map(budgetRow).join("")+'</table></div></div>'+
+ priceMatrix();
+}
+function budgetRow(x){return '<tr><td>'+esc(x.id)+'</td><td>'+esc(groupName("budget",x.groupId))+'</td><td>'+esc(x.kind)+'</td><td>'+esc(x.code)+'</td><td>'+esc(x.name)+'</td><td>'+num(x.qty,3)+'</td><td>'+esc(x.unit)+'</td><td>'+money(x.unitPrice)+'</td><td>'+esc(sourceName(x.sourceId))+'</td><td>'+esc(supplierName(x.supplierId))+'</td><td><b>'+money(x.qty*x.unitPrice)+'</b></td><td class="nowrap">'+(canEdit()?'<button onclick="budgetForm(\''+x.id+'\')">Editar</button> <button class="danger" onclick="deleteRecord(\'budgetItems\',\''+x.id+'\',\'Item orçamentário\')">Excluir</button>':'')+'</td></tr>'}
+function priceMatrix(){const q=project(),types=["SINAPI_NAT","SINAPI_DF","SICRO_NAT","SICRO_DF","MARKET_NAT","MARKET_DF"];return '<div class="card"><h3>Comparador de fontes por item</h3><p class="muted">Médias de mercado são calculadas automaticamente a partir das cotações numéricas cadastradas. SICRO permanece sem valor quando não há composição tecnicamente compatível.</p><div class="tablewrap"><table><tr><th>Item</th>'+types.map(t=>'<th>'+esc(SOURCE_TYPES[t])+'</th>').join("")+'</tr>'+q.budgetItems.map(it=>'<tr><td>'+esc(it.id)+' — '+esc(it.name)+'</td>'+types.map(t=>{const a=avgQuote(it.id,t),n=quoteN(it.id,t);return '<td>'+(a==null?'—':money(a)+'<br><span class="mini">n='+n+'</span>')+'</td>'}).join("")+'</tr>').join("")+'</table></div></div>'}
+
+function planningView(){const q=project(),groups=[...q.groups.planning].sort((a,b)=>a.order-b.order);return '<div class="card"><h2>Planejamento detalhado</h2><p class="muted">Atividades elementares, com predecessora, zona, duração, equipe e lead time. O agrupamento representa fases visuais.</p>'+toolbar("planning","+ Atividade","activityForm()")+'<div class="tablewrap"><table><tr><th>ID</th><th>Grupo</th><th>Atividade</th><th>Zona</th><th>Predecessora</th><th>Duração</th><th>Equipe</th><th>Lead</th><th>Status</th><th></th></tr>'+groups.map(g=>'<tr class="grouphead"><td colspan="10">'+esc(g.name)+'</td></tr>'+q.activities.filter(x=>x.groupId===g.id).map(activityRow).join("")).join("")+q.activities.filter(x=>!groups.some(g=>g.id===x.groupId)).map(activityRow).join("")+'</table></div></div>'}
+function activityRow(x){return '<tr><td>'+esc(x.id)+'</td><td>'+esc(groupName("planning",x.groupId))+'</td><td>'+esc(x.name)+'</td><td>'+esc(x.zone)+'</td><td>'+esc(x.pred||"—")+'</td><td>'+num(x.days,2)+' d</td><td>'+num(x.crew,0)+'</td><td>'+num(x.lead,1)+' d</td><td>'+esc(x.status)+'</td><td class="nowrap">'+(canEdit()?'<button onclick="activityForm(\''+x.id+'\')">Editar</button> <button class="danger" onclick="deleteRecord(\'activities\',\''+x.id+'\',\'Atividade\')">Excluir</button>':'')+'</td></tr>'}
+
+function suppliesView(){const q=project(),groups=[...q.groups.supplies].sort((a,b)=>a.order-b.order);return '<div class="card"><h2>Suprimentos</h2><p class="muted">Cada linha representa um fornecimento indivisível do planejamento. Estoque de segurança e lead time são editáveis.</p>'+toolbar("supplies","+ Suprimento","supplyForm()")+'<div class="tablewrap"><table><tr><th>ID</th><th>Grupo</th><th>Suprimento</th><th>Item orçamento</th><th>Qtd.</th><th>Un.</th><th>Segurança</th><th>Lead</th><th>Fornecedor</th><th>Status</th><th></th></tr>'+groups.map(g=>'<tr class="grouphead"><td colspan="11">'+esc(g.name)+'</td></tr>'+q.supplies.filter(x=>x.groupId===g.id).map(supplyRow).join("")).join("")+q.supplies.filter(x=>!groups.some(g=>g.id===x.groupId)).map(supplyRow).join("")+'</table></div></div>'}
+function supplyRow(x){return '<tr><td>'+esc(x.id)+'</td><td>'+esc(groupName("supplies",x.groupId))+'</td><td>'+esc(x.name)+'</td><td>'+esc(x.budgetItemId||"—")+'</td><td>'+num(x.qty,3)+'</td><td>'+esc(x.unit)+'</td><td>'+num(x.safety,1)+'%</td><td>'+num(x.lead,1)+' d</td><td>'+esc(supplierName(x.supplierId))+'</td><td>'+esc(x.status)+'</td><td class="nowrap">'+(canEdit()?'<button onclick="supplyForm(\''+x.id+'\')">Editar</button> <button class="danger" onclick="deleteRecord(\'supplies\',\''+x.id+'\',\'Suprimento\')">Excluir</button>':'')+'</td></tr>'}
+
+function sourcesView(){const q=project(),groups=[...q.groups.sources].sort((a,b)=>a.order-b.order);return '<div class="card"><h2>Fontes e cotações</h2><p class="muted">Cadastre bases oficiais, pesquisas de mercado e cotações. As médias nacional/regional são derivadas das cotações numéricas associadas a cada tipo.</p>'+toolbar("sources","+ Fonte","sourceForm()")+(canEdit()?'<button class="primary" onclick="quoteForm()">+ Cotação/preço</button>':'')+'<div class="tablewrap"><table><tr><th>Grupo</th><th>Tipo</th><th>Fonte</th><th>Região</th><th>Data</th><th>Observação</th><th></th></tr>'+groups.map(g=>'<tr class="grouphead"><td colspan="7">'+esc(g.name)+'</td></tr>'+q.sources.filter(x=>x.groupId===g.id).map(sourceRow).join("")).join("")+'</table></div></div>'+
+ '<div class="card"><h3>Registros de preço / cotação</h3><div class="tablewrap"><table><tr><th>ID</th><th>Item</th><th>Fonte</th><th>Fornecedor</th><th>Preço</th><th>Un.</th><th>Data</th><th>Região</th><th></th></tr>'+q.quotes.map(quoteRow).join("")+'</table></div></div>'}
+function sourceRow(x){return '<tr><td>'+esc(groupName("sources",x.groupId))+'</td><td>'+esc(SOURCE_TYPES[x.type]||x.type)+'</td><td>'+esc(x.name)+'</td><td>'+esc(x.region)+'</td><td>'+esc(x.date)+'</td><td>'+esc(x.note)+'</td><td class="nowrap">'+(canEdit()?'<button onclick="sourceForm(\''+x.id+'\')">Editar</button> <button class="danger" onclick="deleteRecord(\'sources\',\''+x.id+'\',\'Fonte\')">Excluir</button>':'')+'</td></tr>'}
+function quoteRow(x){return '<tr><td>'+esc(x.id)+'</td><td>'+esc(x.budgetItemId)+'</td><td>'+esc(sourceName(x.sourceId))+'</td><td>'+esc(supplierName(x.supplierId))+'</td><td>'+(x.price==null?'Sob consulta':money(x.price))+'</td><td>'+esc(x.unit)+'</td><td>'+esc(x.date)+'</td><td>'+esc(x.region)+'</td><td class="nowrap">'+(canEdit()?'<button onclick="quoteForm(\''+x.id+'\')">Editar</button> <button class="danger" onclick="deleteRecord(\'quotes\',\''+x.id+'\',\'Cotação\')">Excluir</button>':'')+'</td></tr>'}
+
+function suppliersView(){const q=project(),groups=[...q.groups.suppliers].sort((a,b)=>a.order-b.order);return '<div class="card"><h2>Fornecedores</h2><p class="muted">Cadastro no nível do fornecedor. CNPJ é exibido quando encontrado em fonte pública; ausência de CNPJ não é preenchida por inferência.</p>'+toolbar("suppliers","+ Fornecedor","supplierForm()")+'<div class="tablewrap"><table><tr><th>Grupo</th><th>Fornecedor</th><th>CNPJ</th><th>Cidade</th><th>Endereço</th><th>Contato</th><th>Categorias</th><th>Status</th><th></th></tr>'+groups.map(g=>'<tr class="grouphead"><td colspan="9">'+esc(g.name)+'</td></tr>'+q.suppliers.filter(x=>x.groupId===g.id).map(supplierRow).join("")).join("")+'</table></div></div>'}
+function supplierRow(x){return '<tr><td>'+esc(groupName("suppliers",x.groupId))+'</td><td><b>'+esc(x.name)+'</b>'+(x.url?'<br><a href="'+esc(x.url)+'" target="_blank" rel="noopener">site</a>':'')+'</td><td>'+esc(x.cnpj||"não informado")+'</td><td>'+esc(x.city)+'</td><td>'+esc(x.address)+'</td><td>'+esc(x.phone)+'</td><td>'+esc(x.categories)+'</td><td>'+esc(x.status)+'</td><td class="nowrap">'+(canEdit()?'<button onclick="supplierForm(\''+x.id+'\')">Editar</button> <button class="danger" onclick="deleteRecord(\'suppliers\',\''+x.id+'\',\'Fornecedor\')">Excluir</button>':'')+'</td></tr>'}
+
+function zonesView(){const q=project();return '<div class="grid2"><div class="card"><div class="split"><div><h2 style="margin:0">Mapa de zonas</h2><p class="muted">É possível usar uma imagem de planta como fundo sem alterar o layout do Planner.</p></div>'+(canEdit()?'<div class="actions"><input id="planFile" type="file" accept="image/*" style="max-width:250px"><button onclick="loadPlanImage()">Carregar planta</button><button onclick="qPlanClear()">Remover planta</button></div>':'')+'</div>'+mapHtml()+'</div><div><div class="card"><div class="split"><h2 style="margin:0">Zonas</h2>'+(canEdit()?'<button class="primary" onclick="zoneForm()">+ Zona</button>':'')+'</div></div>'+q.zones.map(z=>'<div class="card"><b>'+esc(z.id)+' — '+esc(z.name)+'</b><p class="mini">'+num(z.area,0)+' m² • vão '+num(z.span,2)+' m • '+num(z.load,1)+' kN/m² • '+esc(z.sys)+'</p><p class="muted">'+esc(z.note)+'</p>'+(canEdit()?'<button onclick="zoneForm(\''+z.id+'\')">Editar</button> <button class="danger" onclick="deleteZone(\''+z.id+'\')">Excluir</button>':'')+'</div>').join("")+'</div></div>'}
+
+function abcView(){const arr=[...project().budgetItems].map(x=>({...x,total:x.qty*x.unitPrice})).sort((a,b)=>b.total-a.total),tot=arr.reduce((s,x)=>s+x.total,0);let ac=0;return '<div class="card"><h2>Curva ABC</h2><div class="tablewrap"><table><tr><th>Item</th><th>Total</th><th>%</th><th>Acum.</th><th>Classe</th><th>Representação</th></tr>'+arr.map(x=>{const pct=x.total/tot*100;ac+=pct;const cls=ac<=80?"A":ac<=95?"B":"C";return '<tr><td>'+esc(x.id)+' — '+esc(x.name)+'</td><td>'+money(x.total)+'</td><td>'+pct.toFixed(1)+'%</td><td>'+ac.toFixed(1)+'%</td><td><b>'+cls+'</b></td><td><div class="abcbar"><span style="width:'+Math.max(2,pct)+'%"></span></div></td></tr>'}).join("")+'</table></div></div>'}
+
+function scheduleCalc(){const acts=project().activities,out={};acts.forEach(a=>{const pe=a.pred&&out[a.pred]?out[a.pred].end:0;const start=pe+Number(a.lead||0);out[a.id]={start,end:start+Number(a.days||0)};});return out}
+function miniGantt(){const s=scheduleCalc(),max=Math.max(1,...Object.values(s).map(x=>x.end));return '<div class="tablewrap"><table class="gantt"><tr><th>Atividade</th><th>Duração</th><th>Linha do tempo</th></tr>'+project().activities.slice(0,8).map(a=>'<tr><td>'+esc(a.name)+'</td><td>'+num(a.days,2)+' d</td><td><div class="ganttbar"><span style="left:'+(s[a.id].start/max*100)+'%;width:'+Math.max(1,(a.days/max*100))+'%"></span></div></td></tr>').join("")+'</table></div>'}
+function ganttView(){const s=scheduleCalc(),max=Math.max(1,...Object.values(s).map(x=>x.end));return '<div class="card"><h2>Cronograma / Gantt</h2><div class="tablewrap"><table class="gantt"><tr><th>ID</th><th>Atividade</th><th>Início</th><th>Fim</th><th>Duração</th><th>Equipe</th><th>Linha do tempo</th></tr>'+project().activities.map(a=>'<tr><td>'+esc(a.id)+'</td><td>'+esc(a.name)+'</td><td>'+num(s[a.id].start,2)+'</td><td>'+num(s[a.id].end,2)+'</td><td>'+num(a.days,2)+' d</td><td>'+a.crew+'</td><td><div class="ganttbar"><span style="left:'+(s[a.id].start/max*100)+'%;width:'+Math.max(1,(a.days/max*100))+'%"></span></div></td></tr>').join("")+'</table></div><p class="muted">Modelo acadêmico: cura/liberação final permanece condicionada ao projeto e à resistência do concreto.</p></div>'}
+
+function logisticsView(){const q=project();return '<div class="card"><h2>Logística e canteiro</h2><div class="grid">'+Object.entries({gate:"Acesso/controle",unload:"Área de descarga",store:"Estoque coberto",epsProtected:"EPS protegido",assembly:"Área de montagem",sanitary:"Sanitários",changing:"Vestiário",meal:"Local de refeições",water:"Água potável",waste:"Resíduos segregados",concrete:"Acesso bomba/caminhão",firePlan:"Proteção do EPS/incêndio"}).map(([k,v])=>'<label class="card"><b>'+v+'</b><br><input style="width:auto" type="checkbox" '+(q.site[k]?"checked":"")+' '+(canEdit()?"":"disabled")+' onchange="project().site.'+k+'=this.checked;persist(\'Canteiro atualizado\')"></label>').join("")+'</div></div><div class="card"><h3>Lead times de suprimento</h3><table><tr><th>Suprimento</th><th>Lead</th><th>Estoque segurança</th><th>Status</th></tr>'+q.supplies.map(s=>'<tr><td>'+esc(s.name)+'</td><td>'+num(s.lead,1)+' d</td><td>'+num(s.safety,1)+'%</td><td>'+esc(s.status)+'</td></tr>').join("")+'</table></div>'}
+
+function risksView(){const q=project();return '<div class="card"><div class="split"><h2 style="margin:0">Riscos</h2>'+(canEdit()?'<button class="primary" onclick="riskForm()">+ Risco</button>':'')+'</div><table><tr><th>Risco</th><th>P</th><th>I</th><th>P×I</th><th>Resposta</th><th></th></tr>'+q.risks.map(r=>'<tr><td>'+esc(r.name)+'</td><td>'+r.p+'</td><td>'+r.i+'</td><td><b>'+r.p*r.i+'</b></td><td>'+esc(r.action)+'</td><td>'+(canEdit()?'<button onclick="riskForm(\''+r.id+'\')">Editar</button> <button class="danger" onclick="deleteRecord(\'risks\',\''+r.id+'\',\'Risco\')">Excluir</button>':'')+'</td></tr>').join("")+'</table></div>'}
+
+function scenariosView(){const q=project(),base=budgetTotal();return '<div class="card"><h2>Cenários</h2><div class="grid">'+Object.entries({optimistic:"Otimista",base:"Base",pessimistic:"Pessimista"}).map(([k,n])=>'<div class="card"><b>'+n+'</b><h3>'+money(base*q.scenarios[k])+'</h3><span class="muted">fator '+q.scenarios[k]+'</span></div>').join("")+'</div>'+(canEdit()?'<div class="formgrid"><label>Fator otimista<input type="number" step=".01" value="'+q.scenarios.optimistic+'" onchange="project().scenarios.optimistic=Number(this.value);persist(\'Cenário alterado\')"></label><label>Fator pessimista<input type="number" step=".01" value="'+q.scenarios.pessimistic+'" onchange="project().scenarios.pessimistic=Number(this.value);persist(\'Cenário alterado\')"></label></div>':'')+'</div>'}
+
+function matrixView(){const q=project(),sum=q.criteria.reduce((a,c)=>a+Number(c.w),0);return '<div class="card"><h2>Matriz multicritério</h2><p>Pesos: <b>'+sum+'%</b></p><div class="tablewrap"><table><tr><th>Critério</th><th>Peso</th>'+q.systems.map(s=>'<th>'+s.key+'</th>').join("")+'</tr>'+q.criteria.map((c,i)=>'<tr><td>'+esc(c.n)+'</td><td>'+(canEdit()?'<input type="number" value="'+c.w+'" onchange="project().criteria['+i+'].w=Number(this.value);persist(\'Peso alterado\')">':c.w+"%")+'</td>'+q.systems.map(s=>'<td>'+(canEdit()?'<input type="number" min="1" max="5" value="'+c.s[s.key]+'" onchange="project().criteria['+i+'].s.'+s.key+'=Number(this.value);persist(\'Nota alterada\')">':c.s[s.key])+'</td>').join("")+'</tr>').join("")+'<tr><th>Nota /100</th><th></th>'+q.systems.map(s=>'<th>'+score(s.key).toFixed(1)+'</th>').join("")+'</tr></table></div></div>'}
+function insightsView(){return '<div class="card"><h2>Insights e recomendações automáticas</h2><p class="muted">Motor local e determinístico. As mensagens são recalculadas após cada alteração.</p>'+recs().map(x=>'<div class="rec '+x[0]+'">'+esc(x[1])+'</div>').join("")+'</div>'}
+function referencesView(){const q=project();return '<div class="card"><h2>Referências</h2><table><tr><th>Referência</th><th>Tipo</th><th>Data</th><th>Link</th></tr>'+q.references.map(r=>'<tr><td>'+esc(r.name)+'</td><td>'+esc(r.type)+'</td><td>'+esc(r.date)+'</td><td>'+(r.url?'<a target="_blank" rel="noopener" href="'+esc(r.url)+'">abrir</a>':'—')+'</td></tr>').join("")+'</table></div>'}
+function auditView(){const q=project();return '<div class="card"><h2>Comentários e auditoria</h2>'+(canEdit()?'<textarea id="commentBox" placeholder="Registrar decisão, premissa ou observação..."></textarea><button class="primary" onclick="addComment()">Registrar comentário</button>':'')+'<h3>Comentários</h3>'+q.comments.map(x=>'<p>'+esc(x)+'</p>').join("")+'<h3>Trilha de alterações</h3>'+q.audit.map(x=>'<p class="muted">'+esc(x)+'</p>').join("")+'</div>'}
+function usersView(){if(session.role!=="master")return "";return '<div class="grid"><div class="card"><h2>Usuários</h2><table><tr><th>Usuário</th><th>Perfil</th></tr>'+db.users.map(u=>'<tr><td>'+esc(u.user)+'</td><td>'+esc(u.role)+'</td></tr>').join("")+'</table><button class="primary" onclick="userForm()">+ Usuário</button></div><div class="card"><h2>Projetos</h2><table><tr><th>Projeto</th><th>Proprietário</th><th>Local</th></tr>'+db.projects.map(p=>'<tr><td>'+esc(p.name)+'</td><td>'+esc(p.owner)+'</td><td>'+esc(p.location)+'</td></tr>').join("")+'</table><button class="primary" onclick="projectForm()">+ Projeto</button></div><div class="card"><h2>Portabilidade</h2><button onclick="exportJSON()">Exportar projeto JSON</button><br><br><input id="importFile" type="file" accept=".json"><button onclick="importJSON()">Importar projeto JSON</button></div></div>'}
+
+function openModal(title,body,saveJs){modalRoot.innerHTML='<div class="modalback" onclick="if(event.target===this)closeModal()"><div class="modal"><div class="split"><h2>'+esc(title)+'</h2><button onclick="closeModal()">✕</button></div>'+body+'<div class="actions"><button class="primary" onclick="'+saveJs+'">Salvar</button><button onclick="closeModal()">Cancelar</button></div></div></div>'}
+function closeModal(){modalRoot.innerHTML=""}
+function opts(arr,value,labelFn=x=>x.name){return '<option value=""></option>'+arr.map(x=>'<option value="'+esc(x.id)+'" '+(x.id===value?"selected":"")+'>'+esc(labelFn(x))+'</option>').join("")}
+function field(id,label,value="",type="text",cls=""){return '<label class="'+cls+'">'+label+'<input id="'+id+'" type="'+type+'" value="'+esc(value)+'"></label>'}
+function selectField(id,label,options,value,cls=""){return '<label class="'+cls+'">'+label+'<select id="'+id+'">'+options.map(o=>'<option value="'+esc(o[0])+'" '+(o[0]===value?"selected":"")+'>'+esc(o[1])+'</option>').join("")+'</select></label>'}
+
+function budgetForm(recId){const q=project(),x=q.budgetItems.find(r=>r.id===recId)||{id:"",groupId:q.groups.budget[0]?.id||"",kind:"Material",code:"",name:"",qty:0,unit:"un",unitPrice:0,sourceId:"",supplierId:""};openModal(recId?"Editar item orçamentário":"Novo item orçamentário",'<div class="formgrid">'+field("fId","ID",x.id||id("B"))+selectField("fGroup","Grupo",q.groups.budget.map(g=>[g.id,g.name]),x.groupId)+selectField("fKind","Classe",[["Material","Material"],["Serviço","Serviço"],["Mão de obra","Mão de obra"],["Consumível","Consumível"],["Equipamento","Equipamento"]],x.kind)+field("fCode","Código",x.code)+field("fName","Descrição",x.name,"text","full")+field("fQty","Quantidade",x.qty,"number")+field("fUnit","Unidade",x.unit)+field("fPU","Preço unitário",x.unitPrice,"number")+selectField("fSource","Fonte principal",q.sources.map(s=>[s.id,s.name]),x.sourceId)+selectField("fSupplier","Fornecedor",q.suppliers.map(s=>[s.id,s.name]),x.supplierId)+'</div>','saveBudget(\''+(recId||"")+'\')')}
+function saveBudget(recId){const q=project(),obj={id:fId.value.trim()||id("B"),groupId:fGroup.value,kind:fKind.value,code:fCode.value.trim(),name:fName.value.trim(),qty:Number(fQty.value),unit:fUnit.value.trim(),unitPrice:Number(fPU.value),sourceId:fSource.value,supplierId:fSupplier.value,baseline:false};if(!obj.name)return alert("Informe a descrição.");if(recId){const i=q.budgetItems.findIndex(x=>x.id===recId);q.budgetItems[i]={...q.budgetItems[i],...obj}}else q.budgetItems.push(obj);closeModal();persist("Item orçamentário "+(recId?"alterado":"incluído"))}
+
+function activityForm(recId){const q=project(),x=q.activities.find(r=>r.id===recId)||{id:"",groupId:q.groups.planning[0]?.id||"",name:"",zone:"Z1",pred:"",days:1,crew:1,lead:0,status:"Planejada"};openModal(recId?"Editar atividade":"Nova atividade",'<div class="formgrid">'+field("fId","ID",x.id||id("A"))+selectField("fGroup","Grupo",q.groups.planning.map(g=>[g.id,g.name]),x.groupId)+field("fName","Atividade",x.name,"text","full")+selectField("fZone","Zona",q.zones.map(z=>[z.id,z.id+" — "+z.name]),x.zone)+selectField("fPred","Predecessora",[["","Nenhuma"],...q.activities.filter(a=>a.id!==recId).map(a=>[a.id,a.id+" — "+a.name])],x.pred)+field("fDays","Duração (dias)",x.days,"number")+field("fCrew","Equipe",x.crew,"number")+field("fLead","Lead/restrição (dias)",x.lead,"number")+selectField("fStatus","Status",[["Planejada","Planejada"],["Em andamento","Em andamento"],["Concluída","Concluída"],["Bloqueada","Bloqueada"]],x.status)+'</div>','saveActivity(\''+(recId||"")+'\')')}
+function saveActivity(recId){const q=project(),obj={id:fId.value.trim()||id("A"),groupId:fGroup.value,name:fName.value.trim(),zone:fZone.value,pred:fPred.value,days:Number(fDays.value),crew:Number(fCrew.value),lead:Number(fLead.value),status:fStatus.value};if(!obj.name)return alert("Informe a atividade.");if(recId){const i=q.activities.findIndex(x=>x.id===recId);q.activities[i]={...q.activities[i],...obj}}else q.activities.push(obj);closeModal();persist("Atividade "+(recId?"alterada":"incluída"))}
+
+function supplyForm(recId){const q=project(),x=q.supplies.find(r=>r.id===recId)||{id:"",groupId:q.groups.supplies[0]?.id||"",budgetItemId:"",name:"",qty:0,unit:"un",safety:0,lead:0,supplierId:"",status:"A cotar"};openModal(recId?"Editar suprimento":"Novo suprimento",'<div class="formgrid">'+field("fId","ID",x.id||id("S"))+selectField("fGroup","Grupo",q.groups.supplies.map(g=>[g.id,g.name]),x.groupId)+field("fName","Suprimento",x.name,"text","full")+selectField("fBudget","Item orçamentário",q.budgetItems.map(b=>[b.id,b.id+" — "+b.name]),x.budgetItemId)+field("fQty","Quantidade",x.qty,"number")+field("fUnit","Unidade",x.unit)+field("fSafety","Estoque segurança (%)",x.safety,"number")+field("fLead","Lead time (dias)",x.lead,"number")+selectField("fSupplier","Fornecedor",q.suppliers.map(s=>[s.id,s.name]),x.supplierId)+selectField("fStatus","Status",[["A cotar","A cotar"],["Cotado","Cotado"],["Pedido","Pedido"],["Programado","Programado"],["Em trânsito","Em trânsito"],["Recebido","Recebido"]],x.status)+'</div>','saveSupply(\''+(recId||"")+'\')')}
+function saveSupply(recId){const q=project(),obj={id:fId.value.trim()||id("S"),groupId:fGroup.value,budgetItemId:fBudget.value,name:fName.value.trim(),qty:Number(fQty.value),unit:fUnit.value.trim(),safety:Number(fSafety.value),lead:Number(fLead.value),supplierId:fSupplier.value,status:fStatus.value};if(!obj.name)return alert("Informe o suprimento.");if(recId){const i=q.supplies.findIndex(x=>x.id===recId);q.supplies[i]={...q.supplies[i],...obj}}else q.supplies.push(obj);closeModal();persist("Suprimento "+(recId?"alterado":"incluído"))}
+
+function sourceForm(recId){const q=project(),x=q.sources.find(r=>r.id===recId)||{id:"",groupId:q.groups.sources[0]?.id||"",type:"SINAPI_DF",name:"",region:"",date:"",url:"",note:""};openModal(recId?"Editar fonte":"Nova fonte",'<div class="formgrid">'+field("fId","ID",x.id||id("SRC-"))+selectField("fGroup","Grupo",q.groups.sources.map(g=>[g.id,g.name]),x.groupId)+selectField("fType","Tipo",Object.entries(SOURCE_TYPES).map(([k,v])=>[k,v]),x.type)+field("fName","Nome",x.name,"text","full")+field("fRegion","Região",x.region)+field("fDate","Data-base",x.date)+field("fUrl","URL",x.url,"text","full")+field("fNote","Observação",x.note,"text","full")+'</div>','saveSource(\''+(recId||"")+'\')')}
+function saveSource(recId){const q=project(),obj={id:fId.value.trim()||id("SRC-"),groupId:fGroup.value,type:fType.value,name:fName.value.trim(),region:fRegion.value.trim(),date:fDate.value.trim(),url:fUrl.value.trim(),note:fNote.value.trim()};if(!obj.name)return alert("Informe o nome.");if(recId){const i=q.sources.findIndex(x=>x.id===recId);q.sources[i]={...q.sources[i],...obj}}else q.sources.push(obj);closeModal();persist("Fonte "+(recId?"alterada":"incluída"))}
+
+function quoteForm(recId){const q=project(),x=q.quotes.find(r=>r.id===recId)||{id:"",budgetItemId:q.budgetItems[0]?.id||"",sourceId:q.sources[0]?.id||"",supplierId:"",price:null,unit:q.budgetItems[0]?.unit||"un",date:"2026-10-01",region:"",url:"",note:""};openModal(recId?"Editar cotação":"Nova cotação / preço",'<div class="formgrid">'+field("fId","ID",x.id||id("Q"))+selectField("fBudget","Item",q.budgetItems.map(b=>[b.id,b.id+" — "+b.name]),x.budgetItemId)+selectField("fSource","Fonte",q.sources.map(s=>[s.id,s.name]),x.sourceId)+selectField("fSupplier","Fornecedor",q.suppliers.map(s=>[s.id,s.name]),x.supplierId)+field("fPrice","Preço (vazio = sob consulta)",x.price==null?"":x.price,"number")+field("fUnit","Unidade",x.unit)+field("fDate","Data",x.date)+field("fRegion","Região",x.region)+field("fUrl","URL",x.url,"text","full")+field("fNote","Observação",x.note,"text","full")+'</div>','saveQuote(\''+(recId||"")+'\')')}
+function saveQuote(recId){const q=project(),obj={id:fId.value.trim()||id("Q"),budgetItemId:fBudget.value,sourceId:fSource.value,supplierId:fSupplier.value,price:fPrice.value===""?null:Number(fPrice.value),unit:fUnit.value.trim(),date:fDate.value.trim(),region:fRegion.value.trim(),url:fUrl.value.trim(),note:fNote.value.trim()};if(recId){const i=q.quotes.findIndex(x=>x.id===recId);q.quotes[i]={...q.quotes[i],...obj}}else q.quotes.push(obj);closeModal();persist("Cotação "+(recId?"alterada":"incluída"))}
+
+function supplierForm(recId){const q=project(),x=q.suppliers.find(r=>r.id===recId)||{id:"",groupId:q.groups.suppliers[0]?.id||"",name:"",cnpj:"",city:"",address:"",phone:"",url:"",categories:"",status:""};openModal(recId?"Editar fornecedor":"Novo fornecedor",'<div class="formgrid">'+field("fId","ID",x.id||id("SUP-"))+selectField("fGroup","Grupo",q.groups.suppliers.map(g=>[g.id,g.name]),x.groupId)+field("fName","Fornecedor",x.name,"text","full")+field("fCnpj","CNPJ",x.cnpj)+field("fCity","Cidade/UF",x.city)+field("fAddress","Endereço",x.address,"text","full")+field("fPhone","Contato",x.phone)+field("fUrl","URL",x.url)+field("fCategories","Categorias",x.categories,"text","full")+field("fStatus","Status / observação",x.status,"text","full")+'</div>','saveSupplier(\''+(recId||"")+'\')')}
+function saveSupplier(recId){const q=project(),obj={id:fId.value.trim()||id("SUP-"),groupId:fGroup.value,name:fName.value.trim(),cnpj:fCnpj.value.trim(),city:fCity.value.trim(),address:fAddress.value.trim(),phone:fPhone.value.trim(),url:fUrl.value.trim(),categories:fCategories.value.trim(),status:fStatus.value.trim()};if(!obj.name)return alert("Informe o fornecedor.");if(recId){const i=q.suppliers.findIndex(x=>x.id===recId);q.suppliers[i]={...q.suppliers[i],...obj}}else q.suppliers.push(obj);closeModal();persist("Fornecedor "+(recId?"alterado":"incluído"))}
+
+function zoneForm(recId){const q=project(),x=q.zones.find(r=>r.id===recId)||{id:"",name:"",span:4.93,load:3,area:0,sys:"EPS",x:10,y:10,w:20,h:20,note:""};openModal(recId?"Editar zona":"Nova zona",'<div class="formgrid">'+field("fId","ID",x.id||id("Z"))+field("fName","Nome",x.name)+field("fSpan","Vão (m)",x.span,"number")+field("fLoad","Carga variável preliminar (kN/m²)",x.load,"number")+field("fArea","Área paramétrica (m²)",x.area,"number")+selectField("fSys","Sistema",q.systems.map(s=>[s.key,s.name]),x.sys)+field("fX","X (%)",x.x,"number")+field("fY","Y (%)",x.y,"number")+field("fW","Largura (%)",x.w,"number")+field("fH","Altura (%)",x.h,"number")+field("fNote","Observação",x.note,"text","full")+'</div>','saveZone(\''+(recId||"")+'\')')}
+function saveZone(recId){const q=project(),obj={id:fId.value.trim()||id("Z"),name:fName.value.trim(),span:Number(fSpan.value),load:Number(fLoad.value),area:Number(fArea.value),sys:fSys.value,x:Number(fX.value),y:Number(fY.value),w:Number(fW.value),h:Number(fH.value),note:fNote.value.trim()};if(!obj.name)return alert("Informe a zona.");if(recId){const i=q.zones.findIndex(x=>x.id===recId);q.zones[i]={...q.zones[i],...obj}}else q.zones.push(obj);closeModal();persist("Zona "+(recId?"alterada":"incluída"))}
+function deleteZone(zid){if(!confirm("Excluir a zona "+zid+"? Atividades vinculadas não serão excluídas."))return;project().zones=project().zones.filter(x=>x.id!==zid);persist("Zona excluída: "+zid)}
+function loadPlanImage(){const f=planFile.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{project().planImage=r.result;persist("Imagem-base da planta atualizada")};r.readAsDataURL(f)}
+function qPlanClear(){project().planImage=null;persist("Imagem-base removida")}
+
+function riskForm(recId){const q=project(),x=q.risks.find(r=>r.id===recId)||{id:"",name:"",p:1,i:1,action:""};openModal(recId?"Editar risco":"Novo risco",'<div class="formgrid">'+field("fId","ID",x.id||id("R"))+field("fName","Risco",x.name,"text","full")+field("fP","Probabilidade 1-5",x.p,"number")+field("fI","Impacto 1-5",x.i,"number")+field("fAction","Resposta / mitigação",x.action,"text","full")+'</div>','saveRisk(\''+(recId||"")+'\')')}
+function saveRisk(recId){const q=project(),obj={id:fId.value.trim()||id("R"),name:fName.value.trim(),p:Number(fP.value),i:Number(fI.value),action:fAction.value.trim()};if(recId){const i=q.risks.findIndex(x=>x.id===recId);q.risks[i]=obj}else q.risks.push(obj);closeModal();persist("Risco "+(recId?"alterado":"incluído"))}
+
+function manageGroups(front){const q=project(),arr=q.groups[front]||[];openModal("Agrupamentos — "+front,'<div id="groupRows">'+arr.map((g,i)=>'<div class="card"><div class="formgrid">'+field("gName"+i,"Nome",g.name)+field("gOrder"+i,"Ordem",g.order,"number")+'</div><button class="danger" onclick="removeGroup(\''+front+'\',\''+g.id+'\')">Excluir grupo</button></div>').join("")+'</div><button onclick="addGroup(\''+front+'\')">+ Grupo</button>','saveGroups(\''+front+'\')')}
+function addGroup(front){const q=project();q.groups[front].push({id:front.toUpperCase().slice(0,3)+"-G"+Date.now(),name:"Novo grupo",order:q.groups[front].length+1});closeModal();manageGroups(front)}
+function removeGroup(front,gid){const q=project();if(!confirm("Excluir este agrupamento? Os registros permanecerão e ficarão sem grupo."))return;q.groups[front]=q.groups[front].filter(g=>g.id!==gid);const map={budget:"budgetItems",planning:"activities",supplies:"supplies",sources:"sources",suppliers:"suppliers"};q[map[front]].forEach(x=>{if(x.groupId===gid)x.groupId=""});closeModal();manageGroups(front)}
+function saveGroups(front){const q=project();q.groups[front].forEach((g,i)=>{const n=document.getElementById("gName"+i),o=document.getElementById("gOrder"+i);if(n)g.name=n.value;if(o)g.order=Number(o.value)});closeModal();persist("Agrupamentos de "+front+" atualizados")}
+
+function deleteRecord(arrName,recId,label){if(!confirm("Excluir "+label+" "+recId+"?"))return;const q=project();q[arrName]=q[arrName].filter(x=>x.id!==recId);if(arrName==="budgetItems"){q.quotes=q.quotes.filter(x=>x.budgetItemId!==recId);q.supplies.forEach(s=>{if(s.budgetItemId===recId)s.budgetItemId=""})}persist(label+" excluído: "+recId)}
+function addComment(){const v=commentBox.value.trim();if(!v)return;project().comments.unshift(new Date().toLocaleString("pt-BR")+" — "+session.user+": "+v);persist("Comentário registrado")}
+function userForm(){openModal("Novo usuário",'<div class="formgrid">'+field("fUser","Usuário","")+field("fPass","Senha","","password")+selectField("fRole","Perfil",[["editor","Projetista/Editor"],["viewer","Visualizador"],["master","Master"]],"editor")+'</div>','saveUser()')}
+function saveUser(){if(!fUser.value.trim()||!fPass.value)return alert("Informe usuário e senha.");db.users.push({user:fUser.value.trim(),pass:fPass.value,role:fRole.value});closeModal();persist("Usuário criado")}
+function projectForm(){openModal("Novo projeto",'<div class="formgrid">'+field("fName","Nome","Novo projeto","text","full")+field("fLoc","Local","Brasília/DF")+'</div>','saveProject()')}
+function saveProject(){const q=deep(model);q.id="p-"+Date.now();q.name=fName.value.trim()||"Novo projeto";q.location=fLoc.value.trim()||"Brasília/DF";q.owner=session.user;q.audit=["Projeto criado a partir do modelo v"+VERSION+"."];db.projects.push(q);db.current=q.id;closeModal();persist("Projeto criado")}
+function exportJSON(){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(project(),null,2)],{type:"application/json"}));a.download=project().id+"-itcc-v040.json";a.click()}
+function importJSON(){const f=importFile.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const q=JSON.parse(r.result);if(!q.id||!q.zones)throw 0;q.budgetItems=q.budgetItems||[];q.activities=q.activities||[];q.supplies=q.supplies||[];q.sources=q.sources||[];q.suppliers=q.suppliers||[];q.quotes=q.quotes||[];q.groups=q.groups||deep(model.groups);db.projects.push(q);db.current=q.id;persist("Projeto importado")}catch(e){alert("JSON incompatível.")}};r.readAsText(f)}
+function exportCSV(front){const q=project();let rows=[];if(front==="budget")rows=[["id","grupo","classe","codigo","descricao","quantidade","unidade","preco_unitario","fonte","fornecedor","total"],...q.budgetItems.map(x=>[x.id,groupName("budget",x.groupId),x.kind,x.code,x.name,x.qty,x.unit,x.unitPrice,sourceName(x.sourceId),supplierName(x.supplierId),x.qty*x.unitPrice])];if(front==="planning")rows=[["id","grupo","atividade","zona","predecessora","dias","equipe","lead","status"],...q.activities.map(x=>[x.id,groupName("planning",x.groupId),x.name,x.zone,x.pred,x.days,x.crew,x.lead,x.status])];if(front==="supplies")rows=[["id","grupo","suprimento","item_orcamento","quantidade","unidade","seguranca_pct","lead","fornecedor","status"],...q.supplies.map(x=>[x.id,groupName("supplies",x.groupId),x.name,x.budgetItemId,x.qty,x.unit,x.safety,x.lead,supplierName(x.supplierId),x.status])];if(front==="sources")rows=[["id","grupo","tipo","nome","regiao","data","url","nota"],...q.sources.map(x=>[x.id,groupName("sources",x.groupId),x.type,x.name,x.region,x.date,x.url,x.note])];if(front==="suppliers")rows=[["id","grupo","fornecedor","cnpj","cidade","endereco","telefone","url","categorias","status"],...q.suppliers.map(x=>[x.id,groupName("suppliers",x.groupId),x.name,x.cnpj,x.city,x.address,x.phone,x.url,x.categories,x.status])];const csv=rows.map(r=>r.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(";")).join("\\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));a.download=project().id+"-"+front+"-v040.csv";a.click()}
+
+localStorage.setItem(KEY,JSON.stringify(db));applyTheme();
+</script>
+</body></html>
