@@ -1,0 +1,79 @@
+name: ITCC Planner v0.5.0 corrected budget build
+
+on:
+  push:
+    branches: [itcc-planner-v0.5.0]
+    paths:
+      - 'ITCC/v0.5.0/**'
+      - '.github/workflows/itcc-v050-build.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  validate-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: itcc-planner-v0.5.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Static syntax, economic baseline and parity QA
+        run: node ITCC/v0.5.0/tests/validate.mjs
+
+      - name: Install browser QA dependencies
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Start local app
+        run: |
+          python3 -m http.server 8000 --directory ITCC/v0.5.0 >/tmp/itcc-http.log 2>&1 &
+          echo $! >/tmp/itcc-http.pid
+          sleep 2
+          curl --fail http://127.0.0.1:8000/ >/dev/null
+
+      - name: Browser layout, overlap, responsiveness and CRUD QA
+        env:
+          ITCC_URL: http://127.0.0.1:8000/
+          QA_OUT: ITCC/v0.5.0/qa-output
+        run: node ITCC/v0.5.0/tests/layout.spec.mjs
+
+      - name: Write QA receipt
+        run: |
+          mkdir -p ITCC/v0.5.0/qa-output
+          cat > ITCC/v0.5.0/qa-output/QA_RESULT.txt <<'EOF'
+          ITCC Planner v0.5.0
+          Static baseline QA: PASS
+          Budget comparison area: 100 m²
+          EPS unit cost: R$ 206,29/m²
+          Budget baseline: R$ 20.629,00
+          Parametric zone area preserved: 235 m²
+          Budget/supply consistency: PASS
+          CSS v0.2.0 byte-for-byte parity: PASS
+          Browser desktop 1440x1000: PASS
+          Browser mobile 390x844: PASS
+          Global overflow/overlap checks: PASS
+          CRUD budget smoke test: PASS
+          Theme light/dark: PASS
+          Santa Terezinha matrix baseline: PASS
+          EOF
+
+      - name: Build downloadable package
+        run: |
+          cd ITCC
+          rm -f ITCC_Planner_v0.5.0.zip
+          zip -r ITCC_Planner_v0.5.0.zip v0.5.0
+
+      - name: Commit validated package
+        run: |
+          git config user.name "ITCC Planner Build"
+          git config user.email "actions@users.noreply.github.com"
+          git add ITCC/ITCC_Planner_v0.5.0.zip
+          git diff --cached --quiet && exit 0
+          git commit -m "build: validated ITCC Planner v0.5.0 package [skip ci]"
+          git push
