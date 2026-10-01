@@ -1,0 +1,34 @@
+name: ITCC Planner v0.4.0 build
+on:
+  push:
+    branches: [itcc-planner-v0.4.0]
+    paths:
+      - 'ITCC/v0.4.0/**'
+      - '.github/workflows/itcc-v040-build.yml'
+permissions:
+  contents: write
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: itcc-planner-v0.4.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate
+        run: node ITCC/v0.4.0/tests/validate.mjs
+      - name: Build zip
+        run: |
+          rm -f ITCC/ITCC_Planner_v0.4.0.zip
+          cd ITCC
+          zip -r ITCC_Planner_v0.4.0.zip v0.4.0 -x 'v0.4.0/tests/*'
+      - name: Commit package
+        run: |
+          git config user.name "ITCC Planner Build"
+          git config user.email "actions@users.noreply.github.com"
+          git add ITCC/ITCC_Planner_v0.4.0.zip
+          git diff --cached --quiet && exit 0
+          git commit -m "build: ITCC Planner v0.4.0 package [skip ci]"
+          git push
