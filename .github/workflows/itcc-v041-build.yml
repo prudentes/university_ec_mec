@@ -1,0 +1,76 @@
+name: ITCC Planner v0.4.1 visual parity build
+
+on:
+  push:
+    branches: [itcc-planner-v0.4.1]
+    paths:
+      - 'ITCC/v0.4.1/**'
+      - '.github/workflows/itcc-v041-build.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  validate-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: itcc-planner-v0.4.1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Static parity, syntax and baseline QA
+        run: node ITCC/v0.4.1/tests/validate.mjs
+
+      - name: Install browser QA dependencies
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Start local app
+        run: |
+          python3 -m http.server 8000 --directory ITCC/v0.4.1 >/tmp/itcc-http.log 2>&1 &
+          echo $! >/tmp/itcc-http.pid
+          sleep 2
+          curl --fail http://127.0.0.1:8000/ >/dev/null
+
+      - name: Browser layout, overlap, responsiveness and CRUD QA
+        env:
+          ITCC_URL: http://127.0.0.1:8000/
+          QA_OUT: ITCC/v0.4.1/qa-output
+        run: node ITCC/v0.4.1/tests/layout.spec.mjs
+
+      - name: Write QA receipt
+        run: |
+          cat > ITCC/v0.4.1/qa-output/QA_RESULT.txt <<'EOF'
+          ITCC Planner v0.4.1
+          Static baseline QA: PASS
+          CSS v0.2.0 byte-for-byte parity: PASS
+          Browser desktop 1440x1000: PASS
+          Browser mobile 390x844: PASS
+          Login geometry: PASS
+          Sidebar/topbar geometry: PASS
+          Global overflow/overlap checks: PASS
+          Modal viewport check: PASS
+          CRUD budget smoke test: PASS
+          Theme light/dark: PASS
+          Santa Terezinha baseline: PASS
+          EOF
+
+      - name: Build downloadable package
+        run: |
+          cd ITCC
+          rm -f ITCC_Planner_v0.4.1.zip
+          zip -r ITCC_Planner_v0.4.1.zip v0.4.1
+
+      - name: Commit validated package
+        run: |
+          git config user.name "ITCC Planner Build"
+          git config user.email "actions@users.noreply.github.com"
+          git add ITCC/ITCC_Planner_v0.4.1.zip
+          git diff --cached --quiet && exit 0
+          git commit -m "build: validated ITCC Planner v0.4.1 package [skip ci]"
+          git push
