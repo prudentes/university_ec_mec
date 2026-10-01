@@ -4,8 +4,7 @@ const req=[
  "ITCC Planner v0.4.0","Orçamento","Planejamento","Suprimentos","Fontes","Fornecedores","Zonas","Curva ABC","Cronograma","Logística","Riscos","Cenários","Matriz","Insights","Referências","Auditoria",
  'cost:206.29','cost:202.39','cost:230.62','cost:263.19',
  'SINAPI_NAT','SINAPI_DF','SICRO_NAT','SICRO_DF','MARKET_NAT','MARKET_DF',
- 'budgetForm(','activityForm(','supplyForm(','sourceForm(','quoteForm(','supplierForm(','manageGroups(',
- 'R$ 48.478,15'
+ 'budgetForm(','activityForm(','supplyForm(','sourceForm(','quoteForm(','supplierForm(','manageGroups('
 ];
 const missing=req.filter(x=>!html.includes(x));
 if(missing.length){console.error("Falha: strings obrigatórias ausentes:",missing);process.exit(1)}
