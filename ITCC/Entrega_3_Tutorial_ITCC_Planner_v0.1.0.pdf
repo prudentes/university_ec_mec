@@ -1,0 +1,180 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R 9 0 R 11 0 R] /Count 4 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 389 >>
+stream
+0.09 0.21 0.36 rg 0 0 595 842 re f
+1 1 1 rg BT /F2 21 Tf 1 0 0 1 55 690 Tm (TUTORIAL - ITCC PLANNER v0.1.0) Tj ET
+0.9 0.94 0.98 rg BT /F1 12 Tf 1 0 0 1 55 640 Tm (Igreja Santa Terezinha ? múltiplos projetos ? zonas ?) Tj ET
+0.9 0.94 0.98 rg BT /F1 12 Tf 1 0 0 1 55 618 Tm (recomendações reativas) Tj ET
+0.9 0.94 0.98 rg BT /F1 10 Tf 1 0 0 1 55 105 Tm (Engenharia Civil - ITCC | 2026) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 4712 >>
+stream
+0.09 0.21 0.36 rg 42 788 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 796 Tm (1. Visão geral) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 755 Tm (O ITCC Planner v0.1.0 é um portal acadêmico local para simular a viabilidade dos quatro sistemas de) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 743 Tm (laje e apoiar o planejamento da obra. O cenário inicial reproduz os dados da Entrega 1 da Igreja Santa) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 731 Tm (Terezinha: vão crítico de 4,93 m; SINAPI DF Ago/2026; cerâmica R$ 202,39/m²; EPS R$ 206,29/m²;) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 719 Tm (nervurada R$ 243,31/m²; maciça R$ 277,29/m²; seleção inicial EPS LT20 e matriz com CER 83,6, EPS 84,6,) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 707 Tm (NER 72,2 e MAC 63,0.) Tj ET
+0.09 0.21 0.36 rg 42 683 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 691 Tm (2. Acesso inicial) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 650 Tm (Abra o arquivo index.html contido no ZIP. Não é necessário servidor. O acesso inicial é usuário ITCC e) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 638 Tm (senha ITCC. Esse perfil é Master e pode criar projetos e usuários. As credenciais servem para) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 626 Tm (demonstração acadêmica local, não para implantação de produção.) Tj ET
+0.09 0.21 0.36 rg 42 602 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 610 Tm (3. Tema System / Light / Dark) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 569 Tm (O seletor de tema fica no cabeçalho. Em 'Tema: sistema', a interface acompanha automaticamente o modo) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 557 Tm (claro ou escuro do computador/celular. Claro e Escuro forçam o modo escolhido. A preferência é salva) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 545 Tm (localmente.) Tj ET
+0.09 0.21 0.36 rg 42 521 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 529 Tm (4. Múltiplos projetos) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 488 Tm (O seletor no topo alterna entre projetos. Em Administração > Novo projeto é possível criar N projetos) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 476 Tm (a partir do modelo-base. Cada projeto possui nome, local, proprietário, sistemas, zonas, matriz,) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 464 Tm (canteiro, cronograma, riscos, comentários e auditoria.) Tj ET
+0.09 0.21 0.36 rg 42 440 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 448 Tm (5. Perfis de acesso) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 407 Tm (? Master: administra projetos e usuários, edita dados e exporta/importa JSON.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 392 Tm (? Projetista/Editor: altera parâmetros técnicos e de planejamento.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 377 Tm (? Visualizador: consulta o projeto sem editar.) Tj ET
+0.09 0.21 0.36 rg 42 355 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 363 Tm (6. Sistemas e custos) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 322 Tm (A tela reúne altura preliminar, custo por m², HH de referência, concreto, vantagens e pontos de) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 310 Tm (atenção. Alterações de altura, custo ou produtividade são salvas e imediatamente consideradas pelo) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 298 Tm (motor de recomendações.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 281 Tm (? Cerâmica: 20 cm; R$ 202,39/m²; 0,747 HH/m².) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 266 Tm (? EPS: 20 cm; R$ 206,29/m²; 0,590 HH/m².) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 251 Tm (? Nervurada: 20 cm; R$ 243,31/m²; 0,879 HH/m² de fôrma.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 236 Tm (? Maciça: 13 cm; R$ 277,29/m²; 0,945 HH/m² de fôrma.) Tj ET
+0.09 0.21 0.36 rg 42 214 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 222 Tm (7. Zonas da edificação) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 181 Tm (A tela Zonas apresenta um mapa gerencial e os parâmetros de cada zona. O esquema não substitui planta) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 169 Tm (técnica. Z1 registra o caso crítico de 4,93 m; nas demais zonas 4,93 m aparece como envoltória) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 157 Tm (conservadora, evitando inventar vãos não medidos.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 140 Tm (? Z1 Nave principal.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 125 Tm (? Z2 Presbitério/altar.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 110 Tm (? Z3 Circulação, coro/mezanino e áreas de reunião.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 95 Tm (? Z4 Sacristia e salas de apoio.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 80 Tm (? Z5 Sanitários, áreas molhadas e técnicas.) Tj ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 10 0 R >>
+endobj
+10 0 obj
+<< /Length 4768 >>
+stream
+0.09 0.21 0.36 rg 42 788 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 796 Tm (8. Como testar o pré-dimensionamento) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 755 Tm (Altere o vão de uma zona. Para EPS, cerâmica e nervurada a regra conservadora compara a altura) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 743 Tm (cadastrada com L/25. Para maciça usa L/40. Se a altura cadastrada ficar inferior ao limite gerencial,) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 731 Tm (o motor gera uma recomendação de revisão. A regra é um filtro de anteprojeto, não um cálculo) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 719 Tm (estrutural.) Tj ET
+0.09 0.21 0.36 rg 42 695 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 703 Tm (9. Canteiro de obra) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 662 Tm (A tela Canteiro permite ativar ou desativar acesso, descarga, estoque coberto, armazenamento protegido) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 650 Tm (de EPS, montagem, sanitários, vestiário, local de refeições, água potável, resíduos, acesso de) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 638 Tm (concreto e controle de proteção do EPS/incêndio. O cenário inicial vem completo para que a primeira) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 626 Tm (utilização não apresente erros críticos.) Tj ET
+0.09 0.21 0.36 rg 42 602 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 610 Tm (10. Cronograma) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 569 Tm (O cronograma-base é separado em mobilização/canteiro; escoramento e montagem EPS; instalações e) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 557 Tm (armaduras; concretagem; cura/liberação. Duração, equipe e lead time podem ser modificados. A liberação) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 545 Tm (definitiva continua condicionada ao projeto e à resistência do concreto.) Tj ET
+0.09 0.21 0.36 rg 42 521 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 529 Tm (11. Riscos) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 488 Tm (A tela de riscos mostra probabilidade, impacto, exposição P×I e resposta. Os riscos iniciais são:) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 476 Tm (carga real superior à referência da vigota; interferência de instalações; dano/deslocamento do EPS.) Tj ET
+0.09 0.21 0.36 rg 42 452 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 460 Tm (12. Matriz multicritério) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 419 Tm (A matriz usa os mesmos pesos e notas do relatório. Ao alterar qualquer nota ou peso, a nota final é) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 407 Tm (recalculada em tempo real. Se a soma dos pesos deixar de ser 100%, surge indicação automática. O) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 395 Tm (sistema selecionado também pode ser trocado para testar cenários.) Tj ET
+0.09 0.21 0.36 rg 42 371 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 379 Tm (13. Motor de recomendações) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 338 Tm (A lógica é totalmente local, automática e determinística. Não depende de IA, internet ou chamada) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 326 Tm (externa. As regras são executadas após cada alteração.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 309 Tm (? Verifica se os pesos somam 100%.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 294 Tm (? Compara o sistema escolhido ao vencedor da matriz.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 279 Tm (? Calcula a diferença de custo para a alternativa mais barata.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 264 Tm (? Compara altura e vão pelo critério preliminar.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 249 Tm (? Controla a carga variável conservadora de zonas de reunião.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 234 Tm (? Verifica armazenamento protegido e controle do EPS.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 219 Tm (? Verifica presença de sanitários, vestiário, refeições e água no canteiro.) Tj ET
+0.09 0.21 0.36 rg 42 197 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 205 Tm (14. Comentários e auditoria) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 164 Tm (Comentários registram decisões, premissas e justificativas. A auditoria recebe data, usuário e) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 152 Tm (descrição das alterações principais, permitindo recuperar a lógica de uma simulação.) Tj ET
+0.09 0.21 0.36 rg 42 128 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 136 Tm (15. Exportação e importação JSON) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 95 Tm (Em Administração, Exportar JSON cria uma cópia dos dados do projeto. O arquivo pode ser guardado antes) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 83 Tm (de uma demonstração. Importar JSON adiciona outro projeto compatível.) Tj ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 12 0 R >>
+endobj
+12 0 obj
+<< /Length 2036 >>
+stream
+0.09 0.21 0.36 rg 42 788 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 796 Tm (16. Roteiro de demonstração em sala) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 755 Tm (? Abrir Dashboard e apresentar EPS LT20, nota 84,6/100 e custo R$ 206,29/m².) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 740 Tm (? Abrir Sistemas e mostrar que a cerâmica é 1,9% mais barata, mas o EPS tem menor HH e peso.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 725 Tm (? Abrir Zonas e mostrar o caso crítico de 4,93 m.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 710 Tm (? Desativar temporariamente 'EPS protegido' no Canteiro e observar a recomendação; reativar) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 698 Tm (depois.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 683 Tm (? Alterar o peso do custo na Matriz para demonstrar sensibilidade e restaurar os valores) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 671 Tm (originais.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 656 Tm (? Abrir Recomendações e mostrar que os textos são atualizados automaticamente.) Tj ET
+0.09 0.21 0.36 rg 42 634 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 642 Tm (17. Versionamento) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 601 Tm (Versão atual: 0.1.0. O esquema segue Semantic Versioning no formato MAJOR.MINOR.PATCH. Durante a fase) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 589 Tm (acadêmica inicial, o major permanece 0. Novas funcionalidades compatíveis incrementam MINOR; correções) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 577 Tm (compatíveis incrementam PATCH; uma futura quebra de compatibilidade incrementará MAJOR.) Tj ET
+0.09 0.21 0.36 rg 42 553 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 561 Tm (18. Recuperação do cenário-base) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 520 Tm (Antes de testar, exporte o JSON do projeto. Para zerar completamente alterações locais, limpe os dados) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 508 Tm (locais do site no navegador ou abra o arquivo em outro perfil/navegador.) Tj ET
+endstream
+endobj
+xref
+0 13
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000134 00000 n 
+0000000231 00000 n 
+0000000333 00000 n 
+0000000469 00000 n 
+0000000909 00000 n 
+0000001045 00000 n 
+0000005809 00000 n 
+0000005946 00000 n 
+0000010767 00000 n 
+0000010905 00000 n 
+trailer
+<< /Size 13 /Root 1 0 R >>
+startxref
+12994
+%%EOF

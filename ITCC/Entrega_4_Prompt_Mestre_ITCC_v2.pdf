@@ -1,0 +1,155 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R 9 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 393 >>
+stream
+0.09 0.21 0.36 rg 0 0 595 842 re f
+1 1 1 rg BT /F2 21 Tf 1 0 0 1 55 690 Tm (PROMPT-MESTRE ITCC - REVISÃO v2) Tj ET
+0.9 0.94 0.98 rg BT /F1 12 Tf 1 0 0 1 55 640 Tm (Estudo de viabilidade de quatro sistemas de laje ? foco no) Tj ET
+0.9 0.94 0.98 rg BT /F1 12 Tf 1 0 0 1 55 618 Tm (roteiro do professor) Tj ET
+0.9 0.94 0.98 rg BT /F1 10 Tf 1 0 0 1 55 105 Tm (Engenharia Civil - ITCC | 2026) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 4735 >>
+stream
+0.09 0.21 0.36 rg 42 788 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 796 Tm (PROMPT-MESTRE - OBJETIVO) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 755 Tm (Produzir estudo acadêmico completo de viabilidade técnico-econômica de quatro sistemas de laje para) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 743 Tm (uma edificação real, com foco prioritário no escopo do professor e análises complementares separadas.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 731 Tm (A saída deve ser autônoma, impessoal, tecnicamente defensável e concluir qual sistema será) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 719 Tm (efetivamente adotado.) Tj ET
+0.09 0.21 0.36 rg 42 695 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 703 Tm (1. Prioridade de escopo) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 662 Tm (? Parte I: caracterização técnica dos quatro sistemas; análise por zona; pré-dimensionamento) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 650 Tm (indicativo; custo e prazo; critérios/pesos; matriz multicritério; recomendação final.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 635 Tm (? Não incluir na Parte I dimensionamento estrutural definitivo, armaduras finais, ELU/ELS) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 623 Tm (completos ou detalhamento executivo.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 608 Tm (? Parte II: planejamento de canteiro, riscos, logística, cenários, cronograma ampliado e) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 596 Tm (ferramenta digital, claramente declarados como adicionais.) Tj ET
+0.09 0.21 0.36 rg 42 574 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 582 Tm (2. Fontes de entrada) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 541 Tm (? Projeto arquitetônico/estrutural e pranchas disponíveis.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 526 Tm (? Roteiro do professor e material das aulas já ministradas.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 511 Tm (? Maior vão e vãos por zona, quando medidos.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 496 Tm (? Uso dos ambientes e cargas preliminares.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 481 Tm (? Local da obra e data-base.) Tj ET
+0.09 0.21 0.36 rg 42 459 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 467 Tm (3. Base de custos) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 426 Tm (? Usar exclusivamente SINAPI na comparação econômica principal, informando UF, mês/ano e regime.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 411 Tm (? Não debater desnecessariamente por que o SINAPI foi escolhido; apenas registrar a padronização) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 399 Tm (da base.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 384 Tm (? Quando não existir composição fechada equivalente, montar composição paramétrica somente com) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 372 Tm (itens SINAPI e identificar as hipóteses.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 357 Tm (? Separar materiais/consumíveis de serviços/mão de obra.) Tj ET
+0.09 0.21 0.36 rg 42 335 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 343 Tm (4. Sistemas obrigatórios) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 302 Tm (Para cada sistema explicar como é feito, vantagens, desvantagens, peso relativo, fôrmas/escoramento,) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 45 290 Tm (mão de obra, instalações, prazo, custo e disponibilidade.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 273 Tm (? Pré-moldada com lajota cerâmica.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 258 Tm (? Pré-moldada com EPS.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 243 Tm (? Nervurada com cubeta.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 228 Tm (? Maciça de concreto armado.) Tj ET
+0.09 0.21 0.36 rg 42 206 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 214 Tm (5. Pré-dimensionamento) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 173 Tm (? Usar L/25 a L/30 para pré-moldadas e nervurada e L/40 para maciça, conforme o roteiro acadêmico.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 158 Tm (? Mostrar a substituição numérica do maior vão e a espessura/altura comercial adotada.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 143 Tm (? Não transformar o pré-dimensionamento em memorial estrutural.) Tj ET
+0.09 0.21 0.36 rg 42 121 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 129 Tm (6. Zoneamento) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 88 Tm (? Propor zonas concretas da obra, e não somente metodologia.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 73 Tm (? Para igreja, avaliar nave; presbitério/altar; circulação/coro/áreas de reunião; sacristia/salas) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 61 Tm (de apoio; sanitários/áreas técnicas, ajustando às pranchas reais.) Tj ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 10 0 R >>
+endobj
+10 0 obj
+<< /Length 4922 >>
+stream
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 795 Tm (? Se o vão específico não estiver medido, usar o maior vão como envoltória conservadora e declarar) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 783 Tm (a premissa.) Tj ET
+0.09 0.21 0.36 rg 42 761 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 769 Tm (7. Viabilidade econômica) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 728 Tm (? Comparar custo R$/m² e módulo normalizado de 100 m².) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 713 Tm (? Mostrar diferença absoluta e percentual entre alternativas.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 698 Tm (? Distinguir menor custo direto de melhor viabilidade global.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 683 Tm (? Separar consumo de concreto, aço/armação, elementos de enchimento/fôrma e HH.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 668 Tm (? Apresentar prazo de forma indicativa, sem confundir HH parcial com ciclo completo.) Tj ET
+0.09 0.21 0.36 rg 42 646 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 654 Tm (8. Carga indicativa da viga crítica) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 613 Tm (? Pode ser apresentada apenas como ordem de grandeza em serviço: carga superficial preliminar ×) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 601 Tm (largura tributária + peso próprio preliminar da viga.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 586 Tm (? Declarar explicitamente que não contém combinações ELU/ELS e não serve para dimensionamento.) Tj ET
+0.09 0.21 0.36 rg 42 564 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 572 Tm (9. Critérios e matriz) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 531 Tm (? Usar os critérios do item 7 do roteiro do professor.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 516 Tm (? Pesos devem respeitar as faixas sugeridas e somar 100%.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 501 Tm (? Notas de 1 a 5, cada uma acompanhada de justificativa.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 486 Tm (? Nota final = ?\(peso × nota\)/5, em escala 0 a 100.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 471 Tm (? Concluir com a alternativa mais viável e explicar eventual sensibilidade entre primeiro e) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 459 Tm (segundo colocado.) Tj ET
+0.09 0.21 0.36 rg 42 437 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 445 Tm (10. Normas e conformidade) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 404 Tm (? Colocar as normas nas referências e explicar somente os pontos que alterem a viabilidade ou a) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 392 Tm (conformidade.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 377 Tm (? Validar cargas, lajes pré-fabricadas, pré-moldados, fôrmas/escoramento, execução, incêndio e) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 365 Tm (desempenho.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 350 Tm (? Nunca declarar conformidade estrutural definitiva sem projeto estrutural.) Tj ET
+0.09 0.21 0.36 rg 42 328 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 336 Tm (11. Ferramenta digital complementar) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 295 Tm (? Manter os mesmos números do relatório no cenário-base.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 280 Tm (? Suportar N projetos, proprietário e usuários Master/Editor/Viewer.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 265 Tm (? Ter System/Light/Dark com detecção automática do dispositivo.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 250 Tm (? Ter zonas, mapa gerencial/planta-base, canteiro, sistemas, custos, cronograma, riscos, matriz,) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 238 Tm (comentários e auditoria.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 223 Tm (? Versão-base desta revisão: 0.1.0 segundo Semantic Versioning.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 208 Tm (? As recomendações devem ser locais, determinísticas e reativas: pesos, ranking, custo, vão,) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 196 Tm (altura, carga, EPS, incêndio, área de vivência e regras futuras.) Tj ET
+0.09 0.21 0.36 rg 42 174 510 27 re f
+1 1 1 rg BT /F2 12 Tf 1 0 0 1 49 182 Tm (12. QA obrigatório) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 141 Tm (? Pesos = 100%; notas entre 1 e 5; totais e percentuais conferidos.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 126 Tm (? Nenhuma hipótese apresentada como medição real.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 111 Tm (? Custos com código SINAPI, UF e data-base.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 96 Tm (? Conclusão coerente com a matriz.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 81 Tm (? Números do relatório e do portal idênticos.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 66 Tm (? Primeira abertura do portal sem campos críticos vazios ou erros críticos.) Tj ET
+0.12 0.16 0.22 rg BT /F1 9 Tf 1 0 0 1 55 51 Tm (? Documentos sem autorreferência e prontos para entrega.) Tj ET
+endstream
+endobj
+xref
+0 11
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000127 00000 n 
+0000000224 00000 n 
+0000000326 00000 n 
+0000000462 00000 n 
+0000000906 00000 n 
+0000001042 00000 n 
+0000005829 00000 n 
+0000005966 00000 n 
+trailer
+<< /Size 11 /Root 1 0 R >>
+startxref
+10941
+%%EOF
